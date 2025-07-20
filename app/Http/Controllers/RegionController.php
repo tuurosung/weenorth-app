@@ -2,17 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Regions\StoreRegionRequest;
 use App\Models\Region;
+use App\Services\Regions\RegionService;
+use App\Traits\HandleResourceActions;
 use Illuminate\Http\Request;
 
 class RegionController extends Controller
 {
+
+    use HandleResourceActions;
+
+    public function __construct(
+        protected $model = new Region(),
+        private $modelName = "Region",
+        public $regionService = new RegionService()
+    )
+    {}
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('app.regions.index', [
+            'regions' => $this->regionService->getRegions()
+        ]);
     }
 
     /**
@@ -26,9 +41,9 @@ class RegionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRegionRequest $request)
     {
-        //
+        return $this->handleStore($request->validated());
     }
 
     /**
@@ -44,15 +59,17 @@ class RegionController extends Controller
      */
     public function edit(Region $region)
     {
-        //
+        return view('app.regions.modals.edit', [
+            'region' => $region
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Region $region)
+    public function update(StoreRegionRequest $request, Region $region)
     {
-        //
+        return $this->handleUpdate($request, $region);
     }
 
     /**
@@ -60,6 +77,6 @@ class RegionController extends Controller
      */
     public function destroy(Region $region)
     {
-        //
+        return $this->handleDelete($region);
     }
 }
