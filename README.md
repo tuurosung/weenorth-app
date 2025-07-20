@@ -14,7 +14,7 @@ A Laravel web application designed for the WeeNorth network to manage membership
 
 1. Clone the repository
 ```bash
-git clone <repository-url>
+git clone <https://github.com/tuurosung/weenorth-app.git>
 cd weenorth-app
 ```
 
