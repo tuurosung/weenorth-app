@@ -1,0 +1,126 @@
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #fff;
+}
+
+
+
+.cal-sans-regular {
+    font-family: "Cal Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.inter {
+    font-family: "Inter", sans-serif;
+}
+
+.open-sans {
+    font-family: "Open Sans", sans-serif;
+}
+
+.urbanist {
+    font-family: "Urbanist", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.crimson-pro {
+    font-family: "Crimson Pro", serif;
+    font-optical-sizing: auto;
+}
+
+.helvetica {
+    font-family: "Helvetica Neue", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.navbar-nav>.nav-item>.nav-link {
+    color: #000;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 14px;
+}
+
+
+
+.app-sidebar .menu .menu-item.active:not(.has-sub)>.menu-link {
+    color: #220076 !important;
+}
+
+.lh-14 {
+    line-height: 1.4;
+}
+
+.app {
+    /* padding-top: 90px; */
+}
+
+.app-header {
+    /* height: 90px; */
+    background-color: #fff;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.09);
+}
+
+.text-purple {
+    color: #220076 !important;
+}
+
+.btn-purple {
+    background-color: #220076 !important;
+    color: #fff !important;
+}
+
+.bg-purple {
+    background-color: #220076 !important;
+}
+
+.bg-warning,
+.bg-orange {
+    background-color: #ffab00 !important;
+}
+
+.text-warning {
+    color: #ffab00 !important;
+}
+
+.shadow-lg {
+    box-shadow: 3px 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+.fi {
+    padding-top: 5px;
+}
+
+.form-control,
+.form-select,
+.select2-container .select2-selection--single {
+    border: 1px solid #ececec;
+    border-top-color: rgb(236, 236, 236);
+    border-right-color: rgb(236, 236, 236);
+    border-bottom-color: rgb(236, 236, 236);
+    border-left-color: rgb(236, 236, 236);
+    border-radius: 5px;
+    height: 40px;
+    /* box-shadow: none; */
+    /* padding-left: 20px; */
+    font-size: 14px;
+    width: 100%;
+
+    --bs-border-opacity: 1;
+    border-color: rgba(var(--bs-gray-300-rgb), var(--bs-border-opacity)) !important;
+
+    box-shadow: 0 .125rem .25rem rgba(var(--bs-black-rgb), .075) !important;
+}
+
+.form-control:focus {
+    outline: none !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+}
+
+#hero {
+    height: 70vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
