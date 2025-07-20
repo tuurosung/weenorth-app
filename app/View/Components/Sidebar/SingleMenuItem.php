@@ -13,6 +13,7 @@ class SingleMenuItem extends Component
      */
     public function __construct(
         public $menuIcon = 'angle-right',
+        public $menuLink = '#',
         public $menuText = 'Menu Item'
     )
     {
