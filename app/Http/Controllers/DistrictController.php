@@ -6,6 +6,7 @@ use App\Http\Requests\Districts\StoreDistrictRequest;
 use App\Http\Requests\Districts\UpdateDistrictRequest;
 use App\Models\District;
 use App\Services\Districts\DistrictService;
+use App\Services\Regions\RegionService;
 use App\Traits\HandleResourceActions;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,7 @@ class DistrictController extends Controller
     public function __construct(
         protected $model = new District(),
         private $modelName = "District",
+        private $regionService = new RegionService(),
         public $districtService = new DistrictService()
     )
     {}
@@ -28,7 +30,7 @@ class DistrictController extends Controller
     {
         return view('app.districts.index', [
             'districts' => $this->districtService->getDistricts(),
-            'regions' => $this->districtService->getRegions()
+            'regions' => $this->regionService->getRegions()
         ]);
     }
 
@@ -65,7 +67,7 @@ class DistrictController extends Controller
     {
         return view('app.districts.modals.edit', [
             'district' => $district,
-            'regions' => $this->districtService->getRegions()
+            'regions' => $this->regionService->getRegions()
         ]);
     }
 

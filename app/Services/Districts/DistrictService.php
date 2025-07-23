@@ -4,24 +4,52 @@ namespace App\Services\Districts;
 
 use App\Models\District;
 use App\Models\Region;
+use App\Traits\Cacheable;
 
 class DistrictService
 {
+
+    use Cacheable;
+
+
     /**
      * Create a new class instance.
      */
-    public function __construct()
+    public function __construct(
+        protected $cacheTag = 'districts'
+    )
     {
         //
     }
 
-    public static function getDistricts()
+
+    /**
+     * Get all districts with their associated regions.
+     *
+     * @return \Illuminate\Support\Collection<int, \stdClass>
+     */
+    public function getDistricts()
     {
-        return District::with('region')->orderBy('district_name')->get();
+        return $this->rememberCache(
+            'all_districts',
+            function () {
+                return District::with('region')->orderBy('district_name')->get();
+            }
+        );
     }
 
-    public static function getRegions()
+
+    /**
+     * Get all districts as an associative array with district IDs as keys and names as values.
+     * 
+     * @return array
+     */
+    public function getDistrictsArray()
     {
-        return Region::orderBy('region_name')->get();
+        $districts = $this->getDistricts();
+
+        return $districts->mapWithKeys(fn ($district) => [
+            $district->id => $district->district_name
+        ])->toArray();
     }
 }
