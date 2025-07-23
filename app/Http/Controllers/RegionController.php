@@ -20,6 +20,7 @@ class RegionController extends Controller
     )
     {}
 
+
     /**
      * Display a listing of the resource.
      */
@@ -30,6 +31,7 @@ class RegionController extends Controller
         ]);
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
@@ -38,13 +40,19 @@ class RegionController extends Controller
         //
     }
 
+
     /**
      * Store a newly created resource in storage.
+     *
+     * @param \App\Http\Requests\Regions\StoreRegionRequest $request
      */
     public function store(StoreRegionRequest $request)
     {
+        $this->regionService->dropCaches();
+
         return $this->handleStore($request->validated());
     }
+
 
     /**
      * Display the specified resource.
@@ -53,6 +61,7 @@ class RegionController extends Controller
     {
         //
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -64,19 +73,31 @@ class RegionController extends Controller
         ]);
     }
 
+
     /**
      * Update the specified resource in storage.
+     *
+     * @param \App\Http\Requests\Regions\StoreRegionRequest $request
+     * @param \App\Models\Region $region
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(StoreRegionRequest $request, Region $region)
     {
+        $this->regionService->dropCaches();
+
         return $this->handleUpdate($request, $region);
     }
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param \App\Models\Region $region
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Region $region)
     {
+        $this->regionService->dropCaches();
+
         return $this->handleDelete($region);
     }
 }

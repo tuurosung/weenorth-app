@@ -16,7 +16,7 @@
 
 <div class="card border-0">
     <div class="card-body">
-        <table class="table table-sm">
+        <table class="table table-sm datatables">
             <thead>
                 <tr>
                     <th scope="col">#</th>
