@@ -16,7 +16,7 @@
 
     <div class="card border-0">
         <div class="card-body">
-            <table class="table table-sm">
+            <table class="table table-sm datatables">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -30,7 +30,7 @@
                     @if(isset($districts) && !$districts->isEmpty())
                         @foreach ($districts as $key => $district)
                             <tr>
-                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $district->created_at }}</td>
                                 <td>{{ $district->district_name }}</td>
                                 <td>{{ $district->region->region_name }}</td>
