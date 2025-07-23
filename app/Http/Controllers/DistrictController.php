@@ -47,6 +47,8 @@ class DistrictController extends Controller
      */
     public function store(StoreDistrictRequest $request)
     {
+        $this->districtService->dropCaches(); // Clear caches before storing
+        
         return $this->handleStore($request->validated());
     }
 
@@ -76,6 +78,8 @@ class DistrictController extends Controller
      */
     public function update(UpdateDistrictRequest $request, District $district)
     {
+        $this->districtService->dropCaches(); // Clear caches before updating
+
         return $this->handleUpdate($request, $district);
     }
 
@@ -84,6 +88,8 @@ class DistrictController extends Controller
      */
     public function destroy(District $district)
     {
+        $this->districtService->dropCaches(); // Clear caches before deleting
+
         return $this->handleDelete($district);
     }
 }

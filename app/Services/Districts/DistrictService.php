@@ -41,7 +41,7 @@ class DistrictService
 
     /**
      * Get all districts as an associative array with district IDs as keys and names as values.
-     * 
+     *
      * @return array
      */
     public function getDistrictsArray()
@@ -51,5 +51,12 @@ class DistrictService
         return $districts->mapWithKeys(fn ($district) => [
             $district->id => $district->district_name
         ])->toArray();
+    }
+
+
+    public function dropCaches()
+    {
+        $this->forgetCache('all_districts');
+        $this->forgetCache('districts_array');
     }
 }
