@@ -4,24 +4,38 @@ namespace App\Services\ServiceCenters;
 
 use App\Models\ServiceCenter;
 use App\Models\District;
+use App\Traits\Cacheable;
 
 class ServiceCenterService
 {
+
+    use Cacheable;
+
     /**
      * Create a new class instance.
      */
-    public function __construct()
+    public function __construct(
+        protected $cacheTag = 'service_centers',
+    )
     {
         //
     }
 
-    public static function getServiceCenters()
+    public function getServiceCenters()
     {
-        return ServiceCenter::with(['district', 'district.region'])->orderBy('location')->get();
+        return $this->rememberCache(
+            'all_service_centers',
+            function () {
+                return ServiceCenter::with(['district', 'district.region'])
+                    ->orderBy('location')
+                    ->get();
+            }
+        );
     }
 
-    public static function getDistricts()
+
+    public function dropCaches()
     {
-        return District::with('region')->orderBy('district_name')->get();
+        $this->forgetCache('all_service_centers');
     }
 }

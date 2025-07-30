@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ServiceCenters\StoreServiceCenterRequest;
 use App\Http\Requests\ServiceCenters\UpdateServiceCenterRequest;
 use App\Models\ServiceCenter;
+use App\Services\Districts\DistrictService;
 use App\Services\ServiceCenters\ServiceCenterService;
 use App\Traits\HandleResourceActions;
-use Illuminate\Http\Request;
 
 class ServiceCenterController extends Controller
 {
@@ -17,9 +17,11 @@ class ServiceCenterController extends Controller
     public function __construct(
         protected $model = new ServiceCenter(),
         private $modelName = "Service Center",
-        public $serviceCenterService = new ServiceCenterService()
+        public $serviceCenterService = new ServiceCenterService(),
+        public $districtService = new DistrictService()
     )
     {}
+    
 
     /**
      * Display a listing of the resource.
@@ -28,9 +30,10 @@ class ServiceCenterController extends Controller
     {
         return view('app.service-centers.index', [
             'serviceCenters' => $this->serviceCenterService->getServiceCenters(),
-            'districts' => $this->serviceCenterService->getDistricts()
+            'districts' => $this->districtService->getDistricts()
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -40,13 +43,17 @@ class ServiceCenterController extends Controller
         //
     }
 
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreServiceCenterRequest $request)
     {
+        $this->serviceCenterService->dropCaches(); // Clear cache before storing
+
         return $this->handleStore($request->validated());
     }
+
 
     /**
      * Display the specified resource.
@@ -58,6 +65,7 @@ class ServiceCenterController extends Controller
         ]);
     }
 
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -65,23 +73,29 @@ class ServiceCenterController extends Controller
     {
         return view('app.service-centers.modals.edit', [
             'serviceCenter' => $serviceCenter,
-            'districts' => $this->serviceCenterService->getDistricts()
+            'districts' => $this->districtService->getDistricts()
         ]);
     }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateServiceCenterRequest $request, ServiceCenter $serviceCenter)
     {
+        $this->serviceCenterService->dropCaches(); // Clear cache before updating
+
         return $this->handleUpdate($request, $serviceCenter);
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(ServiceCenter $serviceCenter)
     {
+        $this->serviceCenterService->dropCaches(); // Clear cache before deleting
+
         return $this->handleDelete($serviceCenter);
     }
 }
