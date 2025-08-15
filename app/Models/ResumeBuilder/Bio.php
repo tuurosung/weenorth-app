@@ -4,6 +4,7 @@ namespace App\Models\ResumeBuilder;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Bio extends Model
 {
@@ -31,5 +32,6 @@ class Bio extends Model
         'gender',
         'personal_statement',
     ];
+
 
 }
