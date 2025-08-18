@@ -44,6 +44,8 @@ class TradeController extends Controller
      */
     public function store(StoreTradeRequest $request)
     {
+        $this->tradeService->dropCaches(); // Clear cache before storing a new trade
+
         return $this->handleStore($request->validated());
     }
 
@@ -72,6 +74,8 @@ class TradeController extends Controller
      */
     public function update(UpdateTradeRequest $request, Trade $trade)
     {
+        $this->tradeService->dropCaches(); // Clear cache before updating a trade
+
         return $this->handleUpdate($request, $trade);
     }
 
@@ -80,6 +84,8 @@ class TradeController extends Controller
      */
     public function destroy(Trade $trade)
     {
+        $this->tradeService->dropCaches(); // Clear cache before deleting a trade
+        
         return $this->handleDelete($trade);
     }
 }
