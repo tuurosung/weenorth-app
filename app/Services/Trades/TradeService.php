@@ -45,4 +45,10 @@ class TradeService
             $trade->id => $trade->trade_name
         ])->toArray();
     }
+
+
+    public function dropCaches()
+    {
+        $this->forgetCache('all_trades');
+    }
 }
