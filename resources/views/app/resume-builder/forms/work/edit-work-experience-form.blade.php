@@ -5,7 +5,7 @@
             <select name="employment_type" id="employment_type" class="form-select">
                 <option value="">-- Select Employment Type --</option>
                 @foreach (config('resume.employment_types') as $type)
-                <option value="{{ $type }}">{{ $type }}</option>
+                <option value="{{ $type }}" {{ $workExperience->employment_type === $type ? 'selected' : '' }}>{{ $type }}</option>
                 @endforeach
             </select>
         </div>
@@ -18,14 +18,14 @@
         <!-- Position -->
         <div class="form-group">
             <label for="" class="form-label">Position</label>
-            <input type="text" class="form-control" name="job_title" id="job_title" placeholder="Enter Position">
+            <input type="text" class="form-control" name="job_title" id="job_title" value="{{ $workExperience->job_title }}" placeholder="Enter Position">
         </div>
     </div>
     <div class="col-md-6">
         <!-- Company -->
         <div class="form-group">
             <label for="" class="form-label">Company</label>
-            <input type="text" class="form-control" name="company_name" id="company_name"
+            <input type="text" class="form-control" name="company_name" id="company_name" value="{{ $workExperience->company_name }}"
                 placeholder="Enter Company Name" />
         </div>
 
@@ -38,7 +38,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="" class="form-label">Location</label>
-            <input type="text" class="form-control" name="location" id="location" placeholder="Enter Location" />
+            <input type="text" class="form-control" name="location" id="location" value="{{ $workExperience->location }}" placeholder="Enter Location" />
         </div>
     </div>
     <div class="col-md-6">
@@ -46,7 +46,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="" class="form-label">From</label>
-                    <input type="date" class="form-control" name="start_date" id="start_date"
+                    <input type="date" class="form-control" name="start_date" id="start_date" value="{{ $workExperience->start_date }}"
                         placeholder="Enter Start Date" max="{{ now()->format('Y-m-d') }}" />
 
                 </div>
@@ -54,7 +54,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="" class="form-label">To</label>
-                    <input type="date" class="form-control" name="end_date" id="end_date" placeholder="Enter End Date"
+                    <input type="date" class="form-control" name="end_date" id="end_date" placeholder="Enter End Date" value="{{ $workExperience->end_date }}"
                         max="{{ now()->format('Y-m-d') }}" />
 
                     <div class="form-check mt-3">
@@ -73,5 +73,7 @@
 <!-- Description -->
 <div class="form-group">
     <label for="work_description" class="form-label">Description</label>
-    <textarea id="work_description" name="work_description" ></textarea>
+    <textarea id="edit_work_description" name="work_description" >
+        {{ $workExperience->work_description }}
+    </textarea>
 </div>

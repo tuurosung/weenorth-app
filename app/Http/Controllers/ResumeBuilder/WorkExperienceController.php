@@ -40,7 +40,6 @@ class WorkExperienceController extends Controller
      */
     public function store(StoreWorkExperienceRequest $request)
     {
-        dd($request->validated());
         return $this->handleStore($request->validated());
     }
 
@@ -57,7 +56,9 @@ class WorkExperienceController extends Controller
      */
     public function edit(WorkExperience $workExperience)
     {
-        //
+        return view('app.resume-builder.modals.work.edit-work-experience-modal', [
+            'workExperience' => $workExperience
+        ]);
     }
 
     /**
@@ -65,7 +66,7 @@ class WorkExperienceController extends Controller
      */
     public function update(UpdateWorkExperienceRequest $request, WorkExperience $workExperience)
     {
-        //
+        return $this->handleUpdate($request, $workExperience);
     }
 
     /**
@@ -73,6 +74,6 @@ class WorkExperienceController extends Controller
      */
     public function destroy(WorkExperience $workExperience)
     {
-        //
+        return $this->handleDelete($workExperience);
     }
 }

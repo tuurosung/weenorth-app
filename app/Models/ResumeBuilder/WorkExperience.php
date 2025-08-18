@@ -29,7 +29,7 @@ class WorkExperience extends Model
         'location',
         'start_date',
         'end_date',
-        'description'
+        'work_description'
     ];
 
 

@@ -55,9 +55,9 @@ class StoreWorkExperienceRequest extends FormRequest
                 'string',
                 'max:255'
             ],
-            'description' => [
+            "work_description" => [
                 'nullable',
-                'string'
+                'string',
             ]
         ];
     }
