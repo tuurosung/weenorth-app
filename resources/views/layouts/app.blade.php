@@ -2,11 +2,8 @@
 <html lang="en">
 
 @include('partials.head')
-<style>
-    body {
-        font-family: 'Avante';
-    }
-</style>
+
+<link rel="stylesheet" href="{{ asset('css/app-styles.css') }}">
 <body>
     <!-- BEGIN #app -->
     <div id="app" class="app">
@@ -19,7 +16,6 @@
 
             @yield('content')
 
-
         </div>
         <!-- END #content -->
 
@@ -31,6 +27,44 @@
     <!-- END #app -->
 
     @include('layouts.partials.footer')
-</body>
 
+    @yield('js')
+
+    @if(session()->has('success'))
+        <script>
+            Toastify({
+                    text: " {{ Session::get('success') }} ",
+                    duration: 3000,
+                    position: 'center',
+                    // className: "danger",
+                    style: {
+                        // background: "#e6180d",
+                    },
+                    offset: {
+                        x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                        y: 90 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                    },
+                }).showToast();
+        </script>
+    @endif
+
+
+    @if (session()->has('error'))
+        <script>
+            Toastify({
+                    text: "{{ Session::get('error') }}",
+                    duration: 4000,
+                    position: 'center',
+                    // className: "danger",
+                    style: {
+                        background: "#e6180d",
+                    },
+                    offset: {
+                        x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                        y: 90 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                    },
+                }).showToast();
+        </script>
+    @endif
+</body>
 </html>

@@ -111,8 +111,11 @@
                 <a class="dropdown-item d-flex align-items-center" href="settings.html">Setting <i
                         class="fa fa-wrench fa-fw ms-auto text-body text-opacity-50"></i></a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item d-flex align-items-center" href="page_login.html">Log Out <i
-                        class="fa fa-toggle-off fa-fw ms-auto text-body text-opacity-50"></i></a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="dropdown-item d-flex align-items-center">Log Out <i
+                            class="fa fa-toggle-off fa-fw ms-auto text-body text-opacity-50"></i></button>
+                </form>
             </div>
         </div>
     </div>
