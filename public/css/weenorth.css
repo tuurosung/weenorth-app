@@ -118,9 +118,68 @@ body {
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
 }
 
+.form-label {
+    margin-bottom: .3rem;
+}
+
+.form-group {
+    margin-bottom: 1.9rem !important;
+}
+
 #hero {
     height: 70vh;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+
+.resume-section {
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+
+/* Resume Section Headings */
+.resume-section h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #220076;
+}
+
+.resume-section h5 {
+    font-weight: 500;
+    font-family: "Cal Sans", sans-serif;
+}
+
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 38px;
+    width: 100% !important;
+    display: block !important;
+}
+
+.select2-container .select2-selection--single,
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 40px;
+    font-size: 0.8rem;
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+.select2-container {
+    display: block !important;
+    width: 100% !important;
+}
+
+.note-btn-group .note-btn {
+    border-color: rgba(0, 0, 0, 0.1960784314);
+    padding: 0.28rem 0.65rem;
+    font-size: 13px;
 }

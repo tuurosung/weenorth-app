@@ -1,0 +1,33 @@
+body {
+    font-family: 'Avante';
+    background-color: #ebeef4 !important;
+}
+
+.btn {
+    padding: 0.6rem 2.14rem;
+    font-size: 12px;
+}
+
+tbody td,
+table.dataTable td.dt-type-numeric {
+    padding-right: 20px !important;
+}
+
+table.dataTable td.dt-type-date,
+table.dataTable th.dt-type-date {
+    text-align: left !important;
+}
+
+
+.modal-header, .modal-footer {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+/* .tab-pane {
+    min-height: 300px;
+} */

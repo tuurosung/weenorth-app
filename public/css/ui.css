@@ -2688,7 +2688,7 @@ progress {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border-radius: 1px;
+    border-radius: 6px;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
 
@@ -27246,7 +27246,7 @@ a:hover {
 }
 
 .nav.nav-wizards-3 .nav-item .nav-link .nav-title {
-    margin-top: .5rem;
+    margin-top: .9rem;
     font-weight: 500;
     text-align: center;
     font-size: .875rem
