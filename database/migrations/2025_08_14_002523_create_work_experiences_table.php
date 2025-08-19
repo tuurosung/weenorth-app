@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('resume_work_experiences', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('employment_type');
+            $table->string('job_title');
+            $table->string('company_name');
+            $table->string('location')->nullable();
+            $table->date('start_date');
+            $table->date('end_date')->nullable();
+            $table->boolean('still_working_here')->default(false);
+            $table->text('work_description');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('work_experiences');
+    }
+};
