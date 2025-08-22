@@ -54,6 +54,17 @@ class DistrictService
     }
 
 
+    public function getDistrictsByRegion(string $regionId)
+    {
+        return $this->rememberCache(
+            "districts_by_region_{$regionId}",
+            function () use ($regionId) {
+                return District::where('region_id', $regionId)->orderBy('district_name')->get();
+            }
+        );
+    }
+
+
     public function dropCaches()
     {
         $this->forgetCache('all_districts');
