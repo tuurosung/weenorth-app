@@ -91,25 +91,14 @@ body {
     padding-top: 5px;
 }
 
-.form-control,
-.form-select,
+
+
 .select2-container .select2-selection--single {
-    border: 1px solid #ececec;
-    border-top-color: rgb(236, 236, 236);
-    border-right-color: rgb(236, 236, 236);
-    border-bottom-color: rgb(236, 236, 236);
-    border-left-color: rgb(236, 236, 236);
-    border-radius: 5px;
-    height: 40px;
-    /* box-shadow: none; */
-    /* padding-left: 20px; */
-    font-size: 14px;
-    width: 100%;
+    /* height: 34.5px !important; */
+}
 
-    --bs-border-opacity: 1;
-    border-color: rgba(var(--bs-gray-300-rgb), var(--bs-border-opacity)) !important;
-
-    box-shadow: 0 .125rem .25rem rgba(var(--bs-black-rgb), .075) !important;
+.select2-container--default .select2-selection--single {
+    border: 0px !important;
 }
 
 .form-control:focus {
@@ -119,11 +108,11 @@ body {
 }
 
 .form-label {
-    margin-bottom: .3rem;
+    margin-bottom: .25rem;
 }
 
 .form-group {
-    margin-bottom: 1.9rem !important;
+    margin-bottom: 1.5rem !important;
 }
 
 #hero {
@@ -182,4 +171,46 @@ body {
     border-color: rgba(0, 0, 0, 0.1960784314);
     padding: 0.28rem 0.65rem;
     font-size: 13px;
+}
+
+
+.table> :not(caption)>*>* {
+    padding: .33rem .3rem !important;
+    color: var(--bs-table-color-state, var(--bs-table-color-type, var(--bs-table-color)));
+    background-color: var(--bs-table-bg);
+    border-bottom-width: var(--bs-border-width);
+    box-shadow: inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)));
+}
+
+table.dataTable th.dt-type-numeric,
+table.dataTable th.dt-type-date,
+table.dataTable td.dt-type-numeric,
+table.dataTable td.dt-type-date {
+    text-align: left !important;
+}
+
+
+.note-editor.note-frame .note-toolbar {
+    background-color: #f3f3f5;
+    border: 1px solid #ececec;
+    border-radius: 5px;
+}
+
+.dropdown-menu .dropdown-item {
+    font-size: 12px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.dropdown-item>i {
+    margin-top: -3px !important;
+}
+
+
+div.dt-container div.dt-length select{
+    min-width: 80px !important;
+}
+
+.dt-layout-table {
+    margin-top:50px !important;
 }

@@ -3,16 +3,16 @@
     return [
         'membership' => [
            [
-            'menuText' => 'Add Member',
-            'menuLink' => '#'
+            'menuText' => 'All Members',
+            'menuLink' => '/member/index'
            ],
            [
-            'menuText' => 'All Members',
-            'menuLink' => '#'
+            'menuText' => 'Add Member',
+            'menuLink' => '/member/index'
            ],
            [
             'menuText' => 'Pending Members',
-            'menuLink' => '#'
+            'menuLink' => '/member/index'
            ]
         ],
 
@@ -20,11 +20,11 @@
         'trades' => [
             [
                 'menuText' => 'All Trades',
-                'menuLink' => '#'
+                'menuLink' => '/trade/index'
             ],
             [
                 'menuText' => 'Add Trade',
-                'menuLink' => '#'
+                'menuLink' => '/trade/index'
             ]
         ]
 
