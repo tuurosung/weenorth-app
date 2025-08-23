@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceCenterController;
+use App\Http\Controllers\ServiceCenters\FilterServiceCenterController;
 
 Route::prefix('service-center')
     ->name('service-center.')
@@ -16,3 +17,6 @@ Route::prefix('service-center')
         Route::delete('destroy/{serviceCenter}', 'destroy')->name('delete');
 
     });
+
+
+Route::get('service-centers/filter-service-centers', FilterServiceCenterController::class)->name('service-centers.filter-service-centers');
