@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Member extends Model
 {
@@ -44,6 +45,47 @@ class Member extends Model
         'experience_years' => 'integer',
     ];
 
+
+    /**
+     * Attributes -------------------------------------------------------------------
+     */
+
+
+    /**
+     * Get the full name of the member.
+     *
+     * @return Attribute
+     */
+    public function fullName(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => "{$this->first_name} {$this->last_name}"
+        );
+    }
+
+
+    public function statusBadge(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => match($this->membership_status) {
+                'active' => '<span class="badge bg-success">Active</span>',
+                'inactive' => '<span class="badge bg-secondary">Inactive</span>',
+                'suspended' => '<span class="badge bg-danger">Suspended</span>',
+                'pending' => '<span class="badge bg-warning">Pending</span>',
+                default => '<span class="badge bg-light">Unknown</span>',
+            }
+        );
+    }
+
+
+
+
+    /**
+     * Relationships ----------------------------------------------------------------
+     */
+
+
+
     public function region(): BelongsTo
     {
         return $this->belongsTo(Region::class);
@@ -59,19 +101,4 @@ class Member extends Model
         return $this->belongsTo(Trade::class);
     }
 
-    public function getFullNameAttribute(): string
-    {
-        return "{$this->first_name} {$this->last_name}";
-    }
-
-    public function getStatusBadgeAttribute(): string
-    {
-        return match($this->membership_status) {
-            'active' => '<span class="badge bg-success">Active</span>',
-            'inactive' => '<span class="badge bg-secondary">Inactive</span>',
-            'suspended' => '<span class="badge bg-danger">Suspended</span>',
-            'pending' => '<span class="badge bg-warning">Pending</span>',
-            default => '<span class="badge bg-light">Unknown</span>',
-        };
-    }
 }
