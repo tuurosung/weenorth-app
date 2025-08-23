@@ -82,11 +82,7 @@
                     </div>
                 </div>
 
-
-
-
                 @include('app.resume-builder.forms.bio.bio-form')
-
 
             </div>
             <div class="tab-pane fade" id="education">
