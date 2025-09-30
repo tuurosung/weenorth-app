@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\Districts\FilterDistrictController;
+use App\Http\Controllers\Districts\FilterDistrictListController;
 
 Route::prefix('district')
     ->name('district.')
@@ -19,3 +20,4 @@ Route::prefix('district')
     });
 
 Route::get('districts/filter-districts', FilterDistrictController::class)->name('districts.filter-districts');
+Route::get('district/filter-districts-list', FilterDistrictListController::class)->name('districts.filter-districts-list');

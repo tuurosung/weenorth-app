@@ -27,8 +27,7 @@
                 </tr>
             </thead>
             <tbody>
-                @if(isset($regions) && !$regions->isEmpty())
-                @foreach ($regions as $key => $region)
+               @foreach ($regions as $key => $region)
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $region->created_at }}</td>
@@ -51,11 +50,6 @@
                     </td>
                 </tr>
                 @endforeach
-                @else
-                <tr>
-                    <td colspan="5" class="text-center">No regions created yet.</td>
-                </tr>
-                @endif
 
             </tbody>
         </table>

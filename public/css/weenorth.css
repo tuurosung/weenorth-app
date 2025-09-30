@@ -164,7 +164,9 @@ body {
 
 .select2-container {
     display: block !important;
-    width: 100% !important;
+    /* width: 100% !important; */
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: 6px;
 }
 
 .note-btn-group .note-btn {
@@ -207,10 +209,10 @@ table.dataTable td.dt-type-date {
 }
 
 
-div.dt-container div.dt-length select{
+div.dt-container div.dt-length select {
     min-width: 80px !important;
 }
 
 .dt-layout-table {
-    margin-top:50px !important;
+    margin-top: 50px !important;
 }

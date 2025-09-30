@@ -26,6 +26,37 @@
                 'menuText' => 'Add Trade',
                 'menuLink' => '/trade/index'
             ]
+        ],
+
+        'network' => [
+            [
+                'menuText' => 'Regional Executives',
+                'menuLink' => '/network/regional-executives'
+            ],
+            [
+                'menuText' => 'District Executives',
+                'menuLink' => '#'
+            ],
+            [
+                'menuText' => 'Trade Mentors',
+                'menuLink' => '#'
+            ],
+            [
+                'menuText' => 'NETs',
+                'menuLink' => '#'
+            ],
+            [
+                'menuText' => 'Media Team',
+                'menuLink' => '#'
+            ],
+            [
+                'menuText' => 'Digi-Champs',
+                'menuLink' => '#'
+            ],
+            [
+                'menuText' => 'Zonal Coordinators',
+                'menuLink' => '/service-center/index'
+            ]
         ]
 
         ];

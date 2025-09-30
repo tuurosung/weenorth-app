@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Models\ResumeBuilder\Bio;
 use App\Models\ResumeBuilder\Education;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -29,6 +30,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone_number',
+        'access_level',
         'password',
     ];
 
@@ -55,6 +58,24 @@ class User extends Authenticatable
         ];
     }
 
+
+    /**
+     *  Attributes ------------------------------------------------------------------------------
+     */
+
+    public function accessLevelDescription(): Attribute
+    {
+        $accessLevels = config('user.access_levels');
+
+        return Attribute::make(
+            get: fn() => $accessLevels[$this->access_level] ?? 'Unknown'
+        );
+    }
+
+
+    /**
+     * Relationships ----------------------------------------------------------------------------
+     */
 
 
     /**

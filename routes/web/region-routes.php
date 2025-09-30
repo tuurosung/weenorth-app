@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegionController;
+use App\Http\Controllers\Regions\FilterRegionController;
 
 Route::prefix('region')
     ->name('region.')
@@ -16,3 +17,5 @@ Route::prefix('region')
         Route::delete('destroy/{region}', 'destroy')->name('delete');
 
     });
+
+    Route::get('region/filter', FilterRegionController::class)->name('region.filter');

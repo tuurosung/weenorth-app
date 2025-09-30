@@ -1,7 +1,6 @@
 <script src="{{ asset('js/jquery.js') }}"></script>
+<script src="{{ asset('js/jquery-migrate-1.4.1.min.js') }}"></script>
 <script src="{{ asset('js/popper.min.js') }}"></script>
-
-
 
 
 <!-- ================== BEGIN core-js ================== -->
@@ -22,3 +21,10 @@
 <script src="{{ asset('js/form-wizard.js') }}"></script>
 <script src="{{ asset('js/weenorth.js') }}"></script>
 <script src="{{ asset('js/tag-it.js') }}"></script>
+
+
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script> -->
+<script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js" type="text/javascript"></script>
+<script src="{{ asset('js/datatables-config.js') }}" type="text/javascript"></script>

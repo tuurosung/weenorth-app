@@ -11,6 +11,18 @@ class District extends Model
 {
     use HasFactory;
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($district) {
+            // Delete all related service centers when a district is deleted
+            $district->serviceCenters()->delete();
+        });
+    }
+
+
+
     protected $fillable = [
         'region_id',
         'district_name'
@@ -21,7 +33,8 @@ class District extends Model
      */
     public function region(): BelongsTo
     {
-        return $this->belongsTo(Region::class);
+        return $this->belongsTo(Region::class)
+            ->withDefault(['region_name' => 'Undefined Region']);
     }
 
     /**

@@ -10,6 +10,16 @@ class Region extends Model
 {
     use HasFactory;
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($region) {
+            // Delete all related districts when a region is deleted
+            $region->districts()->delete();
+        });
+    }
+
     protected $fillable = [
         'region_name'
     ];

@@ -19,10 +19,10 @@ class RegionDistrictSeeder extends Seeder
         // Create sample regions
         $regions = [
             'Upper West Region',
+            'Upper East Region',
+            'Savannah Region',
+            'North East Region',
             'Northern Region',
-            'Greater Accra Region',
-            'Ashanti Region',
-            'Western Region'
         ];
 
         foreach ($regions as $regionName) {
@@ -31,11 +31,15 @@ class RegionDistrictSeeder extends Seeder
 
         // Get the created regions
         $upperWest = Region::where('region_name', 'Upper West Region')->first();
+        $upperEast = Region::where('region_name', 'Upper East Region')->first();
+        $savannah = Region::where('region_name', 'Savannah Region')->first();
+        $northEast = Region::where('region_name', 'North East Region')->first();
         $northern = Region::where('region_name', 'Northern Region')->first();
-        $greaterAccra = Region::where('region_name', 'Greater Accra Region')->first();
+
 
         // Create sample districts for Upper West Region
         if ($upperWest) {
+
             $upperWestDistricts = [
                 'Wa Municipal',
                 'Wa East District',
@@ -53,6 +57,70 @@ class RegionDistrictSeeder extends Seeder
             }
         }
 
+
+        // Create sample districts for Upper East Region
+        if ($upperEast) {
+            $upperEastDistricts = [
+                'Bawku Municipal',
+                'Bolgatanga Municipal',
+                'Bongo Municipal',
+                'Navrongo Municipal',
+                'Paga Municipal',
+                'Tongo Municipal',
+                'Garu-Tempane District',
+                'Talensi District',
+                'Kassena-Nankana Municipal',
+                'Kassena-Nankana West District',
+                'Nabdam District',
+            ];
+
+            foreach ($upperEastDistricts as $districtName) {
+                District::firstOrCreate([
+                    'region_id' => $upperEast->id,
+                    'district_name' => $districtName
+                ]);
+            }
+        }
+
+
+        // Create sample districts for Savannah Region
+        if ($savannah) {
+
+            $savannahDistricts = [
+                'Damongo Municipal',
+                'Bole District',
+                'Sawla-Tuna-Kalba District',
+                'West Gonja District',
+                'Salaga Municipal'
+            ];
+
+            foreach ($savannahDistricts as $districtName) {
+                District::firstOrCreate([
+                    'region_id' => $savannah->id,
+                    'district_name' => $districtName
+                ]);
+            }
+        }
+
+
+        // Create sample districts for North East Region
+        if ($northEast) {
+            $northEastDistricts = [
+                'Nalerigu Municipal',
+                'Bunkpurugu Municipal',
+                'East Mamprusi District',
+                'West Mamprusi District',
+                'Chereponi District',
+            ];
+
+            foreach ($northEastDistricts as $districtName) {
+                District::firstOrCreate([
+                    'region_id' => $northEast->id,
+                    'district_name' => $districtName
+                ]);
+            }
+        }
+
         // Create sample districts for Northern Region
         if ($northern) {
             $northernDistricts = [
@@ -60,7 +128,16 @@ class RegionDistrictSeeder extends Seeder
                 'Sagnarigu Municipal',
                 'Savelugu Municipal',
                 'Yendi Municipal',
-                'Zabzugu District'
+                'Zabzugu District',
+                'Nanumba North District',
+                'Nanumba South District',
+                'Gushegu Municipal',
+                'Karaga District',
+                'Mion District',
+                'Kumbungu District',
+                'Tolon District',
+                'Nanton District',
+                'Saboba District',
             ];
 
             foreach ($northernDistricts as $districtName) {
@@ -71,23 +148,6 @@ class RegionDistrictSeeder extends Seeder
             }
         }
 
-        // Create sample districts for Greater Accra Region
-        if ($greaterAccra) {
-            $accraDistricts = [
-                'Accra Metropolitan',
-                'Tema Metropolitan',
-                'Ga East Municipal',
-                'Ga West Municipal',
-                'Ga South Municipal'
-            ];
-
-            foreach ($accraDistricts as $districtName) {
-                District::firstOrCreate([
-                    'region_id' => $greaterAccra->id,
-                    'district_name' => $districtName
-                ]);
-            }
-        }
 
         // Create sample service centers
         $this->createServiceCenters();
@@ -101,7 +161,6 @@ class RegionDistrictSeeder extends Seeder
         // Get some districts to create service centers for
         $waMunicipal = District::where('district_name', 'Wa Municipal')->first();
         $tamaleMetropolitan = District::where('district_name', 'Tamale Metropolitan')->first();
-        $accraMetropolitan = District::where('district_name', 'Accra Metropolitan')->first();
 
         // Service centers for Wa Municipal
         if ($waMunicipal) {
@@ -158,91 +217,78 @@ class RegionDistrictSeeder extends Seeder
                 );
             }
         }
-
-        // Service centers for Accra Metropolitan
-        if ($accraMetropolitan) {
-            $serviceCenters = [
-                [
-                    'district_id' => $accraMetropolitan->id,
-                    'location' => 'Osu Service Center',
-                    'town_city' => 'Accra',
-                    'address' => 'Oxford Street, Osu',
-                    'email' => 'accra.osu@weenorth.com',
-                    'phone_number' => '+233 30 222 1111',
-                    'center_representative' => 'Mary Asante',
-                    'opening_hours' => 'Monday-Friday: 8:00 AM - 6:00 PM, Saturday: 9:00 AM - 3:00 PM'
-                ],
-                [
-                    'district_id' => $accraMetropolitan->id,
-                    'location' => 'Adabraka Service Center',
-                    'town_city' => 'Accra',
-                    'address' => 'Kojo Thompson Road, Adabraka',
-                    'email' => 'accra.adabraka@weenorth.com',
-                    'phone_number' => '+233 30 222 2222',
-                    'center_representative' => 'Kwame Owusu',
-                    'opening_hours' => 'Monday-Saturday: 7:30 AM - 5:30 PM'
-                ]
-            ];
-
-            foreach ($serviceCenters as $center) {
-                ServiceCenter::firstOrCreate(
-                    ['location' => $center['location']],
-                    $center
-                );
-            }
-        }
     }
 
     private function createTrades(): void
     {
         $trades = [
             [
-                'trade_name' => 'Carpentry',
-                'description' => 'Building and repairing wooden structures, furniture, and fixtures. Includes cabinet making, furniture construction, and general woodworking.'
-            ],
-            [
-                'trade_name' => 'Plumbing',
-                'description' => 'Installing and maintaining water supply, heating, and sanitation systems in residential and commercial buildings.'
-            ],
-            [
-                'trade_name' => 'Electrical Work',
+                'trade_name' => 'Electricals',
                 'description' => 'Installing and maintaining electrical systems, wiring, and equipment in buildings and industrial settings.'
             ],
             [
-                'trade_name' => 'Masonry',
-                'description' => 'Building structures from individual units of stone, brick, concrete blocks, and other masonry materials.'
+                'trade_name' => 'Solar Panel Installation',
+                'description' => 'Installing and maintaining solar panel systems for residential and commercial properties.'
             ],
             [
-                'trade_name' => 'Welding',
-                'description' => 'Joining metals using high heat and specialized equipment for construction, manufacturing, and repair work.'
+                'trade_name' => 'Woodwork',
+                'description' => 'Creating and repairing wooden structures, furniture, and fixtures. Includes cabinet making, furniture construction, and general woodworking.'
             ],
             [
-                'trade_name' => 'Painting & Decoration',
+                'trade_name' => 'Plumbing And Gas Fitting',
+                'description' => 'Installing and maintaining plumbing and gas systems in residential and commercial buildings.'
+            ],
+            [
+                'trade_name' => 'Bricklaying',
+                'description' => 'Laying and repairing bricks and mortar for residential and commercial buildings.'
+            ],
+            [
+                'trade_name' => 'Tiling',
+                'description' => 'Installing tiles on floors, walls, and other surfaces, including preparation and finishing work.'
+            ],
+            [
+                'trade_name' => 'Small Engine Repair',
+                'description' => 'Repairing and maintaining small engines, such as those found in lawn mowers, chainsaws, and other outdoor equipment.'
+            ],
+            [
+                'trade_name' => 'Painting',
                 'description' => 'Applying paint, stain, and other finishes to buildings and structures, including interior and exterior decoration.'
             ],
             [
-                'trade_name' => 'Roofing',
-                'description' => 'Installing and repairing roofs on residential and commercial buildings using various materials and techniques.'
+                'trade_name' => 'POP (Plaster Of Paris Crown Moulding)',
+                'description' => 'Creating decorative elements and finishes using plaster of Paris, including crown moulding and other architectural details.'
             ],
             [
-                'trade_name' => 'Tailoring & Garment Making',
-                'description' => 'Creating, altering, and repairing clothing and garments using traditional and modern techniques.'
+                'trade_name' => 'Eco-Friendly Construction Materials',
+                'description' => 'Using sustainable and environmentally friendly materials in construction projects, such as recycled materials, bamboo, and other green building products.'
             ],
             [
-                'trade_name' => 'Hairdressing & Cosmetology',
-                'description' => 'Cutting, styling, and treating hair, as well as providing beauty services for clients.'
+                'trade_name' => 'Air Conditioner Servicing',
+                'description' => 'Fixing and maintaining air conditioning systems in residential and commercial buildings.'
             ],
             [
-                'trade_name' => 'Auto Mechanics',
-                'description' => 'Repairing and maintaining motor vehicles, including engines, transmissions, and other automotive systems.'
+                'trade_name' => 'Tracktor Driving With Implements',
+                'description' => 'Operating tractors and other heavy machinery with various implements for agricultural and construction tasks.'
             ],
             [
-                'trade_name' => 'Electronics Repair',
-                'description' => 'Fixing and maintaining electronic devices, appliances, and equipment for household and commercial use.'
+                'trade_name' => 'Agricultural Mechanization',
+                'description' => 'Using machinery and technology to improve agricultural productivity and efficiency.'
             ],
             [
-                'trade_name' => 'Cooking & Catering',
-                'description' => 'Preparing and cooking food in various culinary styles, including restaurant service and event catering.'
+                'trade_name' => 'Solar Powered Irrigation',
+                'description' => 'Installing and maintaining solar-powered irrigation systems for agricultural use.'
+            ],
+            [
+                'trade_name' => 'Vinyl Flooring Installation',
+                'description' => 'Installing vinyl flooring in residential and commercial properties, including preparation and finishing work.'
+            ],
+            [
+                'trade_name' => 'Astroturf Installation',
+                'description' => 'Installing artificial turf for sports fields, landscaping, and other applications.'
+            ],
+            [
+                'trade_name' => 'Welding',
+                'description' => 'Joining metal parts together using various welding techniques for construction and manufacturing purposes.'
             ]
         ];
 
@@ -254,14 +300,14 @@ class RegionDistrictSeeder extends Seeder
         }
 
         // Create sample members
-        $this->createSampleMembers();
+        // $this->createSampleMembers();
     }
 
-    private function createSampleMembers(): void
-    {
-        // Only create sample members if none exist
-        if (\App\Models\Member::count() === 0) {
-            \App\Models\Member::factory()->count(20)->create();
-        }
-    }
+    // private function createSampleMembers(): void
+    // {
+    //     // Only create sample members if none exist
+    //     if (\App\Models\Member::count() === 0) {
+    //         \App\Models\Member::factory()->count(20)->create();
+    //     }
+    // }
 }

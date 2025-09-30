@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('phone', 20)->nullable();
             $table->date('date_of_birth')->nullable();
-            $table->enum('gender', ['male', 'female', 'other'])->nullable();
+            $table->string('gender')->nullable();
 
             // Address Information
             $table->text('address')->nullable();
@@ -30,11 +30,11 @@ return new class extends Migration
             // Professional Information
             $table->unsignedBigInteger('trade_id')->nullable();
             $table->unsignedInteger('experience_years')->nullable();
-            $table->enum('skill_level', ['beginner', 'intermediate', 'advanced', 'expert'])->nullable();
+            $table->string('skill_level')->nullable();
 
             // Membership Information
-            $table->enum('membership_type', ['individual', 'corporate', 'student'])->default('individual');
-            $table->enum('membership_status', ['active', 'inactive', 'suspended', 'pending'])->default('pending');
+            $table->string('membership_type')->default('individual');
+            $table->string('membership_status')->default('pending');
             $table->date('joined_date');
 
             // Additional Information

@@ -52,6 +52,19 @@ class RegionService
     }
 
 
+    public function filterRegions()
+    {
+        $searchTerm = request('q');
+
+        // clean the search term to prevent SQL injection
+        $searchTerm = preg_replace('/[^a-zA-Z0-9\s]/', '', $searchTerm);
+
+        return Region::whereLike('region_name', '%'.$searchTerm.'%')
+            ->orderBy('region_name')
+            ->get();
+    }
+
+
 
     /**
      * Drop caches related to regions.

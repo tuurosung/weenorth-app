@@ -34,9 +34,9 @@
         <script>
             Toastify({
                     text: " {{ Session::get('success') }} ",
-                    duration: 3000,
+                    // duration: 3000,
                     position: 'center',
-                    // className: "danger",
+                    className: "primary",
                     style: {
                         // background: "#e6180d",
                     },
@@ -53,11 +53,11 @@
         <script>
             Toastify({
                     text: "{{ Session::get('error') }}",
-                    duration: 4000,
+                    // duration: 4000,
                     position: 'center',
-                    // className: "danger",
+                    className: "danger",
                     style: {
-                        background: "#e6180d",
+                        // background: "#e6180d",
                     },
                     offset: {
                         x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
