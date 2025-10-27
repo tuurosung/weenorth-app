@@ -54,6 +54,8 @@
         <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet" /> -->
         <link href="https://cdn.datatables.net/2.3.2/css/dataTables.bootstrap5.css" rel="stylesheet" />
 
+    <link href="{{ asset('matdash/css/styles.css') }}" rel="stylesheet">
+
 
     <!-- WeeNorth CSS -->
     <link href="{{ asset('css/weenorth.css') }}" type="text/css" rel="stylesheet" />
@@ -129,4 +131,119 @@
     .bootbox-body {
         font-size: 18px;
     }
+
+    body {
+            font-family: 'Avante' !important;
+            font-weight: 500;
+            font-size: 0.835rem;
+            /* background-color: #fff; */
+        }
+
+    .table > :not(caption) > * > * {
+        /* color: #000000; */
+    }
+
+    .nav-link {
+            color: #000;
+            font-weight: 500;
+        }
+
+        .custom-table>tbody>tr>td {
+            font-weight: 500;
+            font-size: 12px;
+        }
+
+        .custom-table>thead>tr>th {
+            font-weight: 500;
+            font-size: 12px;
+        }
+
+        .nav-link.active {
+            /* color: blue !important; */
+        }
+
+        .nav-pills .nav-link {
+            border-radius: var(--bs-nav-pills-border-radius) !important;
+        }
+
+        .form-control,
+        .form-select,
+        .select2-container .select2-selection--single {
+            border: 1px solid #ececec;
+            border-top-color: rgb(236, 236, 236);
+            border-right-color: rgb(236, 236, 236);
+            border-bottom-color: rgb(236, 236, 236);
+            border-left-color: rgb(236, 236, 236);
+            border-radius: 5px;
+            height: 40px;
+            /* box-shadow: none; */
+            /* padding-left: 20px; */
+            font-size: 14px;
+            width: 100%;
+
+            --bs-border-opacity: 1;
+            border-color: rgba(var(--bs-gray-300-rgb), var(--bs-border-opacity)) !important;
+
+            box-shadow: 0 .125rem .25rem rgba(var(--bs-black-rgb), .075) !important;
+        }
+
+        .form-control:focus {
+            outline: none !important;
+            border-color: var(--primary-color) !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+        }
+
+
+        .datatables>tbody>tr>td,
+        .datatables>tfoot>tr>td {
+            padding-right: 20px;
+        }
+
+        .table-warning {
+            --bs-table-bg: #ffab00 !important;
+        }
+
+        .table-danger {
+            --bs-table-bg: #d60000 !important;
+            --bs-table-color: #fff !important;
+        }
+
+        .table-danger a {
+            color: #fff !important;
+        }
+
+        .nav-link {
+            font-size: 14px;
+        }
+
+        .card-body {
+            color: #000;
+        }
+
+        .note-editor.note-frame .note-toolbar .note-btn-group>.note-btn,
+        .note-editor.note-frame {
+            color: #000;
+        }
+
+        :root {
+            --bs-body-color: #000;
+        }
+
+        .nav-tabs {
+            --bs-nav-tabs-border-width: 0;
+            --bs-nav-tabs-border-color: var(--bs-border-color);
+            --bs-nav-tabs-border-radius: 10px;
+            --bs-nav-tabs-link-hover-border-color: var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color);
+            --bs-nav-tabs-link-active-color: #fff;
+            --bs-nav-tabs-link-active-bg: #635bff;
+            --bs-nav-tabs-link-active-border-color: var(--bs-border-color) var(--bs-border-color) #635bff;
+        }
+
+        i[class^="fi-sr-"]::before, i[class*=" fi-sr-"]::before, span[class^="fi-sr-"]::before, span[class*="fi-sr-"]::before {
+            line-height: 1.5 !important;
+        }
+
+        .form-label {
+            font-weight: 500;
+        }
 </style>

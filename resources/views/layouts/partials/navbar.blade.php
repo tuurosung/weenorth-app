@@ -39,24 +39,13 @@
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-notification">
                 <h6 class="dropdown-header text-body-emphasis mb-1">Notifications</h6>
-                <a href="#" class="dropdown-notification-item">
-                    <div class="dropdown-notification-icon">
-                        <i class="fa fa-receipt fa-lg fa-fw text-success"></i>
-                    </div>
-                    <div class="dropdown-notification-info">
-                        <div class="title">Your store has a new order for 2 items totaling $1,299.00</div>
-                        <div class="time">just now</div>
-                    </div>
-                    <div class="dropdown-notification-arrow">
-                        <i class="fa fa-chevron-right"></i>
-                    </div>
-                </a>
+
                 <a href="#" class="dropdown-notification-item">
                     <div class="dropdown-notification-icon">
                         <i class="far fa-user-circle fa-lg fa-fw text-muted"></i>
                     </div>
                     <div class="dropdown-notification-info">
-                        <div class="title">3 new customer account is created</div>
+                        <div class="title">You have 10 new service requests</div>
                         <div class="time">2 minutes ago</div>
                     </div>
                     <div class="dropdown-notification-arrow">
@@ -65,23 +54,11 @@
                 </a>
                 <a href="#" class="dropdown-notification-item">
                     <div class="dropdown-notification-icon">
-                        <img src="assets/img/icon/android.svg" alt="" width="26">
+                        <i class="fi fi-rr-briefcase text-muted"></i>
                     </div>
                     <div class="dropdown-notification-info">
-                        <div class="title">Your android application has been approved</div>
+                        <div class="title">3 New Employers Have Signed Up</div>
                         <div class="time">5 minutes ago</div>
-                    </div>
-                    <div class="dropdown-notification-arrow">
-                        <i class="fa fa-chevron-right"></i>
-                    </div>
-                </a>
-                <a href="#" class="dropdown-notification-item">
-                    <div class="dropdown-notification-icon">
-                        <img src="assets/img/icon/paypal.svg" alt="" width="26">
-                    </div>
-                    <div class="dropdown-notification-info">
-                        <div class="title">Paypal payment method has been enabled for your store</div>
-                        <div class="time">10 minutes ago</div>
                     </div>
                     <div class="dropdown-notification-arrow">
                         <i class="fa fa-chevron-right"></i>

@@ -4,7 +4,7 @@
         'membership' => [
            [
             'menuText' => 'All Members',
-            'menuLink' => '/member/index'
+            'menuLink' => '/member/'
            ],
            [
             'menuText' => 'Add Member',

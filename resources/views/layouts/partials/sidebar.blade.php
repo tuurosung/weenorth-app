@@ -25,7 +25,7 @@
             <div class="menu-divider"></div>
             <div class="menu-header">Wee-Tools</div>
 
-            <x-sidebar.single-menu-item menuIcon="comment-alt" menuText="Chat"/>
+            <x-sidebar.single-menu-item menuIcon="comment-alt" menuText="Chat" menuLink="{{ route('community.chat') }}" />
             <x-sidebar.single-menu-item menuIcon="calendar" menuText="Events"/>
             <x-sidebar.single-menu-item menuIcon="book-open-cover" menuText="Resources" />
             <x-sidebar.single-menu-item menuIcon="hammer-brush" menuText="Service Requests" menuLink="{{ route('service-requests.index') }}" />

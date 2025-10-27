@@ -10,8 +10,8 @@
 <div class="my-5">
 
     <h1 class="cal-sans-regular text-capitalize fw-600 display-5">
-        <span>{{ $bio->firstname ?? 'Jane' }}</span>
-        <span class="text-warning">{{ $bio->lastname ?? 'Doe' }}</span>
+        <span>{{ $bio->firstname ?? 'First Name' }}</span>
+        <span class="text-warning">{{ $bio->lastname ?? 'Second Name' }}</span>
     </h1>
 
     <hr class="bordertop border-2 opacity-100 border-warning">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="d-flex flex-column">
                     <div>Phone</div>
-                    <div>{{ $bio->phone }}</div>
+                    <div>{{ $bio->phone?? '' }}</div>
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="d-flex flex-column">
                     <div>Email</div>
-                    <div>{{ $bio->email }}</div>
+                    <div>{{ $bio->email ?? '' }}</div>
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="d-flex flex-column ">
                     <div>Address</div>
-                    <div>{{ $bio->residential_address }}</div>
+                    <div>{{ $bio->residential_address ?? '' }}</div>
                 </div>
             </div>
         </div>
@@ -65,6 +65,6 @@
     </div>
 
 
-    <div class="">{{ $bio->personal_statement }}</div>
+    <div class="">{{ $bio->personal_statement ?? '' }}</div>
 
 </div>

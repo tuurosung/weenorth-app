@@ -28,3 +28,10 @@
 <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js" type="text/javascript"></script>
 <script src="{{ asset('js/datatables-config.js') }}" type="text/javascript"></script>
+
+<script src="{{ asset('matdash/js/app.init.js') }}" type="text/javascript"></script>
+<script src="{{ asset('matdash/js/app.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('matdash/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('matdash/js/sidebarmenu.js') }}" type="text/javascript"></script>
+<script src="{{ asset('matdash/js/simplebar.min.js.js') }}" type="text/javascript"></script>
+<script src="{{ asset('matdash/js/theme.js') }}" type="text/javascript"></script>

@@ -9,18 +9,24 @@
     <div id="app" class="app">
         @include('layouts.partials.navbar')
 
-        @include('layouts.partials.sidebar')
+        @if (Auth::user()->access_level == 'member')
+            @include('layouts.partials.member-sidebar')
+        @else
+            @include('layouts.partials.sidebar')
+        @endif
 
         <!-- BEGIN #content -->
         <div id="content" class="app-content">
-
-            @yield('content')
-
+            <div class="container-fluid">
+                @yield('content')
+            </div>
         </div>
         <!-- END #content -->
 
         <!-- BEGIN btn-scroll-top -->
-        <a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
+        <a href="#" data-click="scroll-top" class="btn-scroll-top fade">
+            <i class="fa fa-arrow-up"></i>
+        </a>
         <!-- END btn-scroll-top -->
 
     </div>

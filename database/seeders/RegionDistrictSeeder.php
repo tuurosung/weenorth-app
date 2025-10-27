@@ -16,6 +16,13 @@ class RegionDistrictSeeder extends Seeder
      */
     public function run(): void
     {
+
+        // truncate tables
+        Region::truncate();
+        District::truncate();
+        ServiceCenter::truncate();
+        Trade::truncate();
+
         // Create sample regions
         $regions = [
             'Upper West Region',
@@ -46,7 +53,8 @@ class RegionDistrictSeeder extends Seeder
                 'Wa West District',
                 'Nadowli-Kaleo District',
                 'Jirapa Municipal',
-                'Lawra Municipal'
+                'Lawra Municipal',
+                'Daffiama Bussie Issah District'
             ];
 
             foreach ($upperWestDistricts as $districtName) {
@@ -62,16 +70,23 @@ class RegionDistrictSeeder extends Seeder
         if ($upperEast) {
             $upperEastDistricts = [
                 'Bawku Municipal',
+                'Bawku West District',
+                'Binduri District',
                 'Bolgatanga Municipal',
+                'Bolgatanga East District',
                 'Bongo Municipal',
                 'Navrongo Municipal',
                 'Paga Municipal',
                 'Tongo Municipal',
-                'Garu-Tempane District',
+                'Garu District',
+                'Tempane District',
                 'Talensi District',
-                'Kassena-Nankana Municipal',
-                'Kassena-Nankana West District',
+                'Kassena Nankana Municipal',
+                'Kassena Nankana West District',
                 'Nabdam District',
+                'Builsa North District',
+                'Builsa South District',
+                'Pusiga District'
             ];
 
             foreach ($upperEastDistricts as $districtName) {
@@ -138,6 +153,8 @@ class RegionDistrictSeeder extends Seeder
                 'Tolon District',
                 'Nanton District',
                 'Saboba District',
+                'Kpandai District',
+                'Tatale/Sanguli District',
             ];
 
             foreach ($northernDistricts as $districtName) {
@@ -150,7 +167,7 @@ class RegionDistrictSeeder extends Seeder
 
 
         // Create sample service centers
-        $this->createServiceCenters();
+        // $this->createServiceCenters();
 
         // Create sample trades
         $this->createTrades();
@@ -223,15 +240,15 @@ class RegionDistrictSeeder extends Seeder
     {
         $trades = [
             [
-                'trade_name' => 'Electricals',
+                'trade_name' => 'Electricals & Electrical Installations',
                 'description' => 'Installing and maintaining electrical systems, wiring, and equipment in buildings and industrial settings.'
             ],
             [
-                'trade_name' => 'Solar Panel Installation',
+                'trade_name' => 'Solar Panel Installation / Solar Installation',
                 'description' => 'Installing and maintaining solar panel systems for residential and commercial properties.'
             ],
             [
-                'trade_name' => 'Woodwork',
+                'trade_name' => 'Carpentry/Woodwork',
                 'description' => 'Creating and repairing wooden structures, furniture, and fixtures. Includes cabinet making, furniture construction, and general woodworking.'
             ],
             [
@@ -239,27 +256,27 @@ class RegionDistrictSeeder extends Seeder
                 'description' => 'Installing and maintaining plumbing and gas systems in residential and commercial buildings.'
             ],
             [
-                'trade_name' => 'Bricklaying',
+                'trade_name' => 'Bricklaying/Blocklaying',
                 'description' => 'Laying and repairing bricks and mortar for residential and commercial buildings.'
             ],
             [
-                'trade_name' => 'Tiling',
+                'trade_name' => 'Tiling/Bricklaying and Tiling/Blocklaying and Tiling',
                 'description' => 'Installing tiles on floors, walls, and other surfaces, including preparation and finishing work.'
             ],
             [
-                'trade_name' => 'Small Engine Repair',
+                'trade_name' => 'Small Engine Repairs',
                 'description' => 'Repairing and maintaining small engines, such as those found in lawn mowers, chainsaws, and other outdoor equipment.'
             ],
             [
-                'trade_name' => 'Painting',
+                'trade_name' => 'Painting/Interior Remodelling',
                 'description' => 'Applying paint, stain, and other finishes to buildings and structures, including interior and exterior decoration.'
             ],
             [
-                'trade_name' => 'POP (Plaster Of Paris Crown Moulding)',
+                'trade_name' => 'POP (Plaster Of Paris Crown Molding)',
                 'description' => 'Creating decorative elements and finishes using plaster of Paris, including crown moulding and other architectural details.'
             ],
             [
-                'trade_name' => 'Eco-Friendly Construction Materials',
+                'trade_name' => 'Eco-Friendly Construction Materials/Eco Friendly Construction',
                 'description' => 'Using sustainable and environmentally friendly materials in construction projects, such as recycled materials, bamboo, and other green building products.'
             ],
             [
@@ -271,7 +288,7 @@ class RegionDistrictSeeder extends Seeder
                 'description' => 'Operating tractors and other heavy machinery with various implements for agricultural and construction tasks.'
             ],
             [
-                'trade_name' => 'Agricultural Mechanization',
+                'trade_name' => 'Agricultural Mechanization / Agric Mechanization',
                 'description' => 'Using machinery and technology to improve agricultural productivity and efficiency.'
             ],
             [
@@ -279,7 +296,7 @@ class RegionDistrictSeeder extends Seeder
                 'description' => 'Installing and maintaining solar-powered irrigation systems for agricultural use.'
             ],
             [
-                'trade_name' => 'Vinyl Flooring Installation',
+                'trade_name' => 'Vinyl Flooring Installation/Vinyl Flooring and Artificial Grass installation',
                 'description' => 'Installing vinyl flooring in residential and commercial properties, including preparation and finishing work.'
             ],
             [

@@ -26,10 +26,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if(isset($serviceCenters) && !$serviceCenters->isEmpty())
                         @foreach ($serviceCenters as $serviceCenter)
                             <tr>
-                                <td>{{ $loop->index + 1 }}</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $serviceCenter->created_at->format('d M Y') }}</td>
                                 <td>{{ $serviceCenter->location }}</td>
                                 <td>{{ $serviceCenter->town_city }}</td>
@@ -57,13 +56,6 @@
                                 </td>
                             </tr>
                         @endforeach
-                    @else
-                        <tr>
-                            <td colspan="7" class="text-center py-4">
-                                <p class="mb-0">No service centers found.</p>
-                            </td>
-                        </tr>
-                    @endif
                 </tbody>
             </table>
         </div>

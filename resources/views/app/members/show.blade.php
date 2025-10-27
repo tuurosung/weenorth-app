@@ -20,17 +20,17 @@
 
                     <div class="row mb-4">
                         <div class="col-md-6">
-                            <p><strong>Member ID:</strong> {{ $member->member_id }}</p>
+                            <p><strong>Member ID:</strong> {{ $member->weenorth_id }}</p>
                             <p><strong>Email:</strong> {{ $member->email ?: 'N/A' }}</p>
-                            <p><strong>Phone:</strong> {{ $member->phone ?: 'N/A' }}</p>
+                            <p><strong>Phone:</strong> {{ $member->contact ?: 'N/A' }}</p>
                             <p><strong>Date of Birth:</strong> {{ $member->date_of_birth ? $member->date_of_birth->format('d M Y') : 'N/A' }}</p>
                             <p><strong>Gender:</strong> {{ ucfirst($member->gender) ?: 'N/A' }}</p>
                         </div>
                         <div class="col-md-6">
                             <p><strong>Cohort:</strong> {{ $member->cohort ?: 'N/A' }}</p>
-                            <p><strong>Region:</strong> {{ $member->region?->name ?: 'N/A' }}</p>
-                            <p><strong>District:</strong> {{ $member->district?->name ?: 'N/A' }}</p>
-                            <p><strong>Joined Date:</strong> {{ $member->joined_date->format('d M Y') }}</p>
+                            <p><strong>Region:</strong> {{ $member->region?->region_name ?: 'N/A' }}</p>
+                            <p><strong>District:</strong> {{ $member->district?->district_name ?: 'N/A' }}</p>
+                            <p><strong>Joined Date:</strong> {{ $member->joined_date?->format('d M Y') ?? 'N/A' }}</p>
                             <p><strong>Membership Type:</strong> {{ ucfirst($member->membership_type) }}</p>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <p><strong>Created:</strong> {{ $member->created_at->format('d M Y, H:i') }}</p>
+                            <p><strong>Created:</strong> {{ $member->created_at?->format('d M Y, H:i') }}</p>
                         </div>
                         <div class="col-md-6">
                             <p><strong>Last Updated:</strong> {{ $member->updated_at->format('d M Y, H:i') }}</p>
@@ -94,12 +94,12 @@
                 <div class="col-md-4">
                     @if($member->profile_photo)
                         <div class="text-center">
-                            <img src="{{ asset('storage/' . $member->profile_photo) }}" alt="{{ $member->full_name }}" 
+                            <img src="{{ asset('storage/' . $member->profile_photo) }}" alt="{{ $member->full_name }}"
                                  class="img-fluid rounded-circle mb-3" style="max-width: 200px; max-height: 200px;">
                         </div>
                     @else
                         <div class="text-center">
-                            <div class="bg-light rounded-circle d-flex align-items-center justify-content-center mb-3" 
+                            <div class="bg-light rounded-circle d-flex align-items-center justify-content-center mb-3"
                                  style="width: 200px; height: 200px; margin: 0 auto;">
                                 <i class="fi fi-br-user" style="font-size: 3rem; color: #6c757d;"></i>
                             </div>

@@ -18,17 +18,16 @@
         <div class="card-body">
 
             <table class="table datatables table-sm">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Client Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
+                        <th scope="col">Contact</th>
                         <th scope="col">Service Center</th>
                         <th scope="col">Region</th>
                         <th scope="col">District</th>
                         <th scope="col">Status</th>
-                        <th scope="col"></th>
+                        <th scope="col" class="text-end">Options</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,8 +35,11 @@
                         <tr class="">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $serviceRequest->client_name }}</td>
-                            <td>{{ $serviceRequest->client_email }}</td>
-                            <td>{{ $serviceRequest->client_phone }}</td>
+                            <td>
+                                <p class="mb-0">{{ $serviceRequest->client_phone }}</p>
+                                {{ $serviceRequest->client_email }}
+
+                            </td>
                             <td>{{ $serviceRequest->serviceCenter->location ?? 'N/A' }}</td>
                             <td>{{ $serviceRequest->region->region_name ?? 'N/A' }}</td>
                             <td>{{ $serviceRequest->district->district_name ?? 'N/A' }}</td>
@@ -46,15 +48,21 @@
 
                                 <div class="dropdown">
                                     <a class="dropdown-toggle text-decoration-none text-dark" type="button" id="triggerId"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
                                         Option
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="triggerId">
+
                                         <a class="dropdown-item d-flex" href="#">
                                             View
                                             <i class="fi fi-br-eye text-info ms-auto"></i>
                                         </a>
-                                        <form method="POST" action="{{  route('service-requests.approve-request', $serviceRequest) }}">
+
+                                        @if($serviceRequest->isPending())
+
+                                        <form method="POST"
+                                            action="{{  route('service-requests.approve-request', $serviceRequest) }}">
                                             @csrf
                                             @method('PATCH')
                                             <a class="dropdown-item d-flex approve-request" href="javascript:void(0)">
@@ -62,7 +70,9 @@
                                                 <i class="fi fi-br-check text-success ms-auto"></i>
                                             </a>
                                         </form>
-                                        <form method="POST" action="{{  route('service-requests.reject-request', $serviceRequest) }}">
+
+                                        <form method="POST"
+                                            action="{{  route('service-requests.reject-request', $serviceRequest) }}">
                                             @csrf
                                             @method('PATCH')
                                             <a class="dropdown-item d-flex reject-request" href="javascript:void(0)">
@@ -70,8 +80,13 @@
                                                 <i class="fi fi-br-x text-danger ms-auto"></i>
                                             </a>
                                         </form>
+
+                                        @endif
+
+
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item d-flex edit-request" href="javascript:void(0)" data-url="{{ route('service-requests.edit', $serviceRequest) }}">
+                                        <a class="dropdown-item d-flex edit-request" href="javascript:void(0)"
+                                            data-url="{{ route('service-requests.edit', $serviceRequest) }}">
                                             Edit
                                             <i class="fi fi-br-pencil text-primary ms-auto"></i>
                                         </a>
@@ -102,121 +117,121 @@
 
 
 @section('js')
-    <script type="text/javascript">
-        $('#service_description').summernote(summernoteConfig)
+<script type="text/javascript">
+$('#service_description').summernote(summernoteConfig)
 
-        $('#region_id').on('change', function () {
+$('#region_id').on('change', function() {
 
-            let $regionId = $(this).val();
-            let $url = "{{ route('districts.filter-districts') }}"
+    let $regionId = $(this).val();
+    let $url = "{{ route('districts.filter-districts') }}"
 
-            $.ajax({
-                url: $url,
-                method: 'GET',
-                data: {
-                    regionId: $regionId
-                },
-                success: function (response) {
-                    // Handle the successful response
-                    if (response.status === 'success') {
+    $.ajax({
+        url: $url,
+        method: 'GET',
+        data: {
+            regionId: $regionId
+        },
+        success: function(response) {
+            // Handle the successful response
+            if (response.status === 'success') {
 
-                        let districts = response.districts;
-                        let $districtSelect = $('#district_id');
-                        let $options = '<option value="">Select District</option>';
+                let districts = response.districts;
+                let $districtSelect = $('#district_id');
+                let $options = '<option value="">Select District</option>';
 
-                        // $districtSelect.empty();
-                        // $districtSelect.append('<option value="">Select a district</option>');
+                // $districtSelect.empty();
+                // $districtSelect.append('<option value="">Select a district</option>');
 
-                        $.each(districts, function (key, value) {
-                            $options +=
-                                `<option value="${value.id}">${value.district_name}</option>`;
-                        });
+                $.each(districts, function(key, value) {
+                    $options +=
+                        `<option value="${value.id}">${value.district_name}</option>`;
+                });
 
-                        $('#district_id').html($options);
+                $('#district_id').html($options);
 
-                    } else {
-                        console.error('Error fetching districts:', response.message);
-                    }
-                },
-                error: function (xhr) {
-                    // Handle the error
-                }
-            })
-        })
+            } else {
+                console.error('Error fetching districts:', response.message);
+            }
+        },
+        error: function(xhr) {
+            // Handle the error
+        }
+    })
+})
 
-        $('#district_id').on('change', function () {
-            let $districtId = $(this).val();
-            let $url = "{{ route('service-centers.filter-service-centers') }}";
+$('#district_id').on('change', function() {
+    let $districtId = $(this).val();
+    let $url = "{{ route('service-centers.filter-service-centers') }}";
 
-            $.ajax({
-                url: $url,
-                type: 'GET',
-                data: {
-                    districtId: $districtId
-                },
-                success: function (response) {
-                    // Handle the successful response
-                    if (response.status === 'success') {
+    $.ajax({
+        url: $url,
+        type: 'GET',
+        data: {
+            districtId: $districtId
+        },
+        success: function(response) {
+            // Handle the successful response
+            if (response.status === 'success') {
 
-                        let serviceCenters = response.service_centers;
-                        let $serviceCenterSelect = $('#service_center_id');
-                        let $options = '<option value="">Select Service Center</option>';
+                let serviceCenters = response.service_centers;
+                let $serviceCenterSelect = $('#service_center_id');
+                let $options = '<option value="">Select Service Center</option>';
 
-                        $.each(serviceCenters, function (key, value) {
-                            $options += `<option value="${value.id}">${value.location}</option>`;
-                        });
+                $.each(serviceCenters, function(key, value) {
+                    $options += `<option value="${value.id}">${value.location}</option>`;
+                });
 
-                        $serviceCenterSelect.html($options);
+                $serviceCenterSelect.html($options);
 
-                    } else {
-                        console.error('Error fetching service centers:', response.message);
-                    }
-                },
-                error: function (xhr) {
-                    // Handle the error
-                }
-            })
-        });
+            } else {
+                console.error('Error fetching service centers:', response.message);
+            }
+        },
+        error: function(xhr) {
+            // Handle the error
+        }
+    })
+});
 
-        $(document).on('click', '.table .edit-request', function() {
-            let $url = $(this).data('url');
+$(document).on('click', '.table .edit-request', function() {
+    let $url = $(this).data('url');
 
-            $.get($url, function(msg){
-                $('#modal_holder').html(msg);
-                $('#editRequestModal').modal('show');
+    $.get($url, function(msg) {
+        $('#modal_holder').html(msg);
+        $('#editRequestModal').modal('show');
 
-                $('#edit_service_description').summernote(summernoteConfig);
-            })
-        })
+        $('#edit_service_description').summernote(summernoteConfig);
+    })
+})
 
-        $(document).on('click', '.table .delete-request', function() {
-            let $form = $(this).closest('form');
+$(document).on('click', '.table .delete-request', function() {
+    let $form = $(this).closest('form');
 
-            bootbox.confirm('Are you sure you want to cancel this request?', function(result) {
-                if (result) {
-                    $form.submit();
-                }
-            });
-        })
+    bootbox.confirm('Are you sure you want to cancel this request?', function(result) {
+        if (result) {
+            $form.submit();
+        }
+    });
+})
 
-        $(document).on('click', '.table .approve-request', function() {
-            let $form = $(this).closest('form');
+$(document).on('click', '.table .approve-request', function() {
+    let $form = $(this).closest('form');
 
-            bootbox.confirm('Are you sure you want to accept this request?', function(result) {
-                if (result) {
-                    $form.submit();
-                }
-            });
-        })
+    bootbox.confirm('Are you sure you want to accept this request?', function(result) {
+        if (result) {
+            $form.submit();
+        }
+    });
+})
 
-        $(document).on('click', '.table .reject-request', function() {
-            let $form = $(this).closest('form');
+$(document).on('click', '.table .reject-request', function() {
+    let $form = $(this).closest('form');
 
-            bootbox.confirm('Are you sure you want to reject this request?', function(result) {
-                if (result) {
-                    $form.submit();
-                }
-            });
-        })
-    </script>
+    bootbox.confirm('Are you sure you want to reject this request?', function(result) {
+        if (result) {
+            $form.submit();
+        }
+    });
+})
+</script>
 @endsection

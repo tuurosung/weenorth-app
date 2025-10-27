@@ -11,6 +11,14 @@ class Member extends Model
 {
     use HasFactory;
 
+    protected static function boot()
+    {
+        parent::boot();
+    }
+
+
+    protected $table = 'members';
+
     protected $fillable = [
         'member_id',
         'cohort',

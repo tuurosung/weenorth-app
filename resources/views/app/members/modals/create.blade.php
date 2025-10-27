@@ -1,5 +1,5 @@
 <!-- Create Member Modal -->
-<div class="modal fade" id="newMemberModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+<div class="modal parentContainer fade" id="newMemberModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
     role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">

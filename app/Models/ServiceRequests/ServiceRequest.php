@@ -108,4 +108,28 @@ class ServiceRequest extends Model
         return $this->belongsTo(Trade::class);
     }
 
+
+
+
+    /**
+     * Methods ---------------------------------------------------------------------------------------------
+     */
+
+
+    public function isPending()
+    {
+        return $this->status === 'pending';
+    }
+
+
+    public function isApproved()
+    {
+        return $this->status === 'approved';
+    }
+
+
+    public function isRejected()
+    {
+        return $this->status === 'rejected';
+    }
 }

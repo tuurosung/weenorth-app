@@ -71,6 +71,24 @@ class MemberService
     }
 
 
+    public function filterMembers($regionId, $districtId, $tradeId)
+    {
+        return Member::with(['region', 'district', 'trade'])
+            ->when($regionId, function ($query) use ($regionId) {
+                return $query->where('region_id', $regionId);
+            })
+            ->when($districtId, function ($query) use ($districtId) {
+                return $query->where('district_id', $districtId);
+            })
+            ->when($tradeId, function ($query) use ($tradeId) {
+                return $query->where('trade_id', $tradeId);
+            })
+            ->orderBy('last_name')
+            ->orderBy('first_name')
+            ->get();
+    }
+
+
     public function dropCaches()
     {
         $this->forgetCache('all_members');

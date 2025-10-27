@@ -2,165 +2,244 @@
 
 @section('content')
 
-<x-headers.top-header pageTitle="Members">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newMemberModal">
-        <i class="fi fi-br-plus me-3"></i>
-        Create Member
-    </button>
-</x-headers.top-header>
+        <x-headers.top-header pageTitle="Members">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newMemberModal">
+                <i class="fi fi-br-plus me-3"></i>
+                Create Member
+            </button>
+        </x-headers.top-header>
 
-@include('partials.errors')
+        @include('partials.errors')
 
-<div class="card border-0">
-    <div class="card-body">
-        <table class="table table-sm table-condensed datatables">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Member ID</th>
-                    <th scope="col">Full Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Trade</th>
-                    <th scope="col">Region</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Joined Date</th>
-                    <th scope="col" class="text-end">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if(isset($members) && !$members->isEmpty())
-                @foreach ($members as $member)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>
-                        <a href="{{ route('member.show', $member) }}">
-                            {{ $member->member_id }}
-                        </a>
-                    </td>
-                    <td>{{ $member->full_name }}</td>
-                    <td>{{ $member->email ?: 'N/A' }}</td>
-                    <td>{{ $member->trade?->trade_name ?: 'N/A' }}</td>
-                    <td>{{ $member->region?->region_name ?: 'N/A' }}</td>
-                    <td>{!! $member->status_badge !!}</td>
-                    <td>{{ $member->joined_date->format('d M Y') }}</td>
-                    <td class="text-end">
+        <div class="card border-0">
+            <div class="card-body">
 
+            <h4>Filter Members</h4>
 
-                        <div class="dropdown">
-                            <a class="dropdown-toggle text-decoration-non text-dark" type="button" id="triggerId"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Options
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="triggerId">
-                                <a href="{{ route('member.show', $member) }}" class="dropdown-item d-flex">
-                                    View
-                                    <i class="fi fi-br-eye ms-auto text-primary"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="dropdown-item d-flex edit"
-                                    data-url="{{ route('member.edit', $member) }}">
-                                    Edit
-                                    <i class="fi fi-br-pencil ms-auto text-info"></i>
-                                </a>
-                                <form action="{{ route('member.delete', $member) }}" method="POST"
-                                    style="display: inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <a href="javascript:void(0)" class="dropdown-item d-flex delete" type="submit">
-                                        Delete
-                                        <i class="fi fi-br-trash ms-auto text-danger"></i>
-                                    </a>
-                                </form>
-                            </div>
+                <div class="d-flex mb-5 gap-4 parentContainer">
+                    <div class="col-2">
+                        <div class="mb-3">
+                            <label for="filterByRegion" class="form-label">Regions</label>
+                            <select
+                                class="form-select select2-input region_id"
+                                name="filterByRegion"
+                                id="filterByRegion"
+                            >
+                                <option value="">-- Select Region ---</option>
+                                @foreach ($regions as $key => $value)
+                                    <option value="{{ $key }}">{{ $value }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
+                    </div>
+                    <div class="col-2">
+                        <div class="mb-3">
+                            <label for="filterByRegion" class="form-label">Districts</label>
+                            <select
+                                class="form-select select2-input district_id"
+                                name="filterByDistrict"
+                                id="filterByDistrict"
+                            >
+                                <option value="">-- Select District ---</option>
+                                @foreach ($districts as $key => $value)
+                                    <option value="{{ $key }}">{{ $value }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                    </td>
-                </tr>
+                    </div>
+                    <div class="col-2">
+                        <div class="mb-3">
+                            <label for="filterByRegion" class="form-label">Trades</label>
+                            <select
+                                class="form-select select2-input"
+                                name="filterByTrade"
+                                id="filterByTrade"
+                            >
+                                <option value="">-- Select Trades ---</option>
+                                @foreach ($trades as $key => $value)
+                                    <option value="{{ $key }}">{{ $value }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                    </div>
+                    <div></div>
+                </div>
+
+                <div id="data_holder">
+    <table class="table table-sm table-condensed datatables">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">WEENorth ID</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Trade</th>
+                <th scope="col">Region</th>
+                <th scope="col">District</th>
+                <th scope="col">Status</th>
+                <th scope="col">Joined Date</th>
+                <th scope="col" class="text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(isset($members) && !$members->isEmpty())
+                @foreach ($members as $member)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>
+                            <a href="{{ route('member.show', $member) }}">
+                                {{ $member->weenorth_id }}
+                            </a>
+                        </td>
+                        <td>{{ $member->full_name }}</td>
+                        <td>{{ $member->email ?: 'N/A' }}</td>
+                        <td>{{ $member->trade?->trade_name ?: 'N/A' }}</td>
+                        <td>{{ $member->region?->region_name ?: 'N/A' }}</td>
+                        <td>{{ $member->district?->district_name ?: 'N/A' }}</td>
+                        <td>{!! $member->status_badge !!}</td>
+                        <td>{{ $member->joined_date?->format('d M Y') }}</td>
+                        <td class="text-end">
+
+
+                            <div class="dropdown">
+                                <a class="dropdown-toggle text-decoration-non text-dark" type="button" id="triggerId"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Options
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="triggerId">
+                                    <a href="{{ route('member.show', $member) }}" class="dropdown-item d-flex">
+                                        View
+                                        <i class="fi fi-br-eye ms-auto text-primary"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="dropdown-item d-flex edit"
+                                        data-url="{{ route('member.edit', $member) }}">
+                                        Edit
+                                        <i class="fi fi-br-pencil ms-auto text-info"></i>
+                                    </a>
+                                    <form action="{{ route('member.delete', $member) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a href="javascript:void(0)" class="dropdown-item d-flex delete" type="submit">
+                                            Delete
+                                            <i class="fi fi-br-trash ms-auto text-danger"></i>
+                                        </a>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                        </td>
+                    </tr>
                 @endforeach
-                @endif
-            </tbody>
-        </table>
-    </div>
-</div>
+            @endif
+        </tbody>
+    </table>
+                </div>
 
-@include('app.members.modals.create')
 
-<div id="modal_holder"></div>
+            </div>
+        </div>
+
+        @include('app.members.modals.create')
+
+        <div id="modal_holder"></div>
 
 @endsection
 
 @section('js')
 
-<script type="text/javascript">
-$(document).ready(function() {
+    <script type="text/javascript">
+    $(document).ready(function() {
 
-    $(document).on('click', '.table tbody .edit', function(event) {
-        event.preventDefault();
-        const url = $(this).data('url');
-
-        $.get(url)
-            .done(function(response) {
-                $('#modal_holder').html(response)
-                $('#editMemberModal').modal('show');
-            })
-            .fail(function() {
-                bootbox.alert('Error loading edit form');
-            });
-    });
-
-    $(document).on('click', '.table tbody .delete', function(event) {
-        event.preventDefault()
-
-        const $form = $(this).closest('form')
-
-        bootbox.confirm("Are you sure you want to delete this member?", function(answer) {
-            if (answer) {
-                $form.submit()
-            }
-        })
-    })
+        $('#filterByRegion, #filterByDistrict, #filterByTrade').change(filterMembers);
 
 
-    $(document).on('change', '.region_id', function() {
+        $(document).on('click', '.table tbody .edit', function(event) {
+            event.preventDefault();
+            const url = $(this).data('url');
 
-        let $regionId = $(this).val();
-        let $url = "{{ route('districts.filter-districts') }}"
-        $modal = $(this).closest('.modal');
+            $.get(url)
+                .done(function(response) {
+                    $('#modal_holder').html(response)
+                    $('#editMemberModal').modal('show');
+                })
+                .fail(function() {
+                    bootbox.alert('Error loading edit form');
+                });
+        });
 
-        $.ajax({
-            url: $url,
-            method: 'GET',
-            data: {
-                regionId: $regionId
-            },
-            success: function(response) {
-                // Handle the successful response
-                if (response.status === 'success') {
+        $(document).on('click', '.table tbody .delete', function(event) {
+            event.preventDefault()
 
-                    let districts = response.districts;
-                    let $districtSelect = $modal.find($('.district_id'));
-                    let $options = '<option value="">-- Select District --</option>';
+            const $form = $(this).closest('form')
 
-                    $districtSelect.empty();
-                    // $districtSelect.append('<option value="">Select a district</option>');
-
-                    $.each(districts, function(key, value) {
-                        $options +=
-                            `<option value="${value.id}">${value.district_name}</option>`;
-                    });
-
-                    $districtSelect.html($options);
-
-                } else {
-                    console.error('Error fetching districts:', response.message);
+            bootbox.confirm("Are you sure you want to delete this member?", function(answer) {
+                if (answer) {
+                    $form.submit()
                 }
-            },
-            error: function(xhr) {
-                // Handle the error
-            }
+            })
         })
-    })
-});
-</script>
+
+
+        $(document).on('change', '.region_id', function() {
+
+            let $regionId = $(this).val();
+            let $url = "{{ route('districts.filter-districts') }}"
+            let $modal = $(this).closest('.parentContainer');
+
+            $.ajax({
+                url: $url,
+                method: 'GET',
+                data: {
+                    regionId: $regionId
+                },
+                success: function(response) {
+                    // Handle the successful response
+                    if (response.status === 'success') {
+
+                        let districts = response.districts;
+                        let $districtSelect = $modal.find($('.district_id'));
+                        let $options = '<option value="">-- Select District --</option>';
+
+                        $districtSelect.empty();
+                        // $districtSelect.append('<option value="">Select a district</option>');
+
+                        $.each(districts, function(key, value) {
+                            $options +=
+                                `<option value="${value.id}">${value.district_name}</option>`;
+                        });
+
+                        $districtSelect.html($options);
+
+                    } else {
+                        console.error('Error fetching districts:', response.message);
+                    }
+                },
+                error: function(xhr) {
+                    // Handle the error
+                }
+            })
+        })
+
+
+        function filterMembers(){
+            let $regionId = $('#filterByRegion').val();
+            let $districtId = $('#filterByDistrict').val();
+            let $tradeId = $('#filterByTrade').val();
+
+            let $url = "{{ route('member.filter') }}"
+            $.get($url, {
+                regionId: $regionId,
+                districtId: $districtId,
+                tradeId: $tradeId
+            }, function (response) {
+                $('#data_holder').html(response)
+            })
+        }
+    });
+    </script>
 
 @endsection
