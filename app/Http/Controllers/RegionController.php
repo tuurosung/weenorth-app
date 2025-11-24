@@ -59,7 +59,9 @@ class RegionController extends Controller
      */
     public function show(Region $region)
     {
-        //
+        return view('app.regions.show', [
+            'region' => $region
+        ]);
     }
 
 
