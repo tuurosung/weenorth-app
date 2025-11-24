@@ -13,13 +13,13 @@
 <script src="{{ asset('js/toastify.min.js') }}"></script>
 <script src="{{ asset('js/bootbox.js') }}"></script>
 <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
-<script src="{{ asset('js/select2.min.js') }}"></script>
+<script src="{{-- asset('js/select2.min.js') --}}"></script>
 <script src="{{ asset('js/summernote-bs5.js') }}"></script>
 <script src="{{ asset('js/summernote-config.js') }}"></script>
 
 <script src="{{ asset('js/rocket.min.js') }}" data-cf-settings="-|49" defer></script>
 <script src="{{ asset('js/form-wizard.js') }}"></script>
-<script src="{{ asset('js/weenorth.js') }}"></script>
+
 <script src="{{ asset('js/tag-it.js') }}"></script>
 
 
@@ -35,3 +35,11 @@
 <script src="{{ asset('matdash/js/sidebarmenu.js') }}" type="text/javascript"></script>
 <script src="{{ asset('matdash/js/simplebar.min.js.js') }}" type="text/javascript"></script>
 <script src="{{ asset('matdash/js/theme.js') }}" type="text/javascript"></script>
+
+<script src="{{ asset('matdash/js/select2.full.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('matdash/js/select2.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('matdash/js/select2.init.js') }}" type="text/javascript"></script>
+
+<script src="{{ asset('js/weenorth.js') }}"></script>
+
+@stack('scripts')

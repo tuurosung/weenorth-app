@@ -17,16 +17,17 @@
             <div class="menu-divider"></div>
             <div class="menu-header">Wee-Network</div>
 
-            <x-sidebar.menu-item-has-sub menuIcon="users-alt" menuText="Membership" :menuItems="config('menu.membership')" />
+            <x-sidebar.single-menu-item menuIcon="users-alt" menuText="Membership" menuLink="{{ route('member.index') }}" />
 
-            <x-sidebar.menu-item-has-sub menuIcon="tools" menuText="Trades"  :menuItems="config('menu.trades')" />
+            <x-sidebar.single-menu-item menuIcon="tools" menuText="Trades"  menuLink="{{ route('trade.index') }}" />
+
             <x-sidebar.menu-item-has-sub menuIcon="network-analytic" menuText="Network"  :menuItems="config('menu.network')" />
 
             <div class="menu-divider"></div>
             <div class="menu-header">Wee-Tools</div>
 
             <x-sidebar.single-menu-item menuIcon="comment-alt" menuText="Chat" menuLink="{{ route('community.chat') }}" />
-            <x-sidebar.single-menu-item menuIcon="calendar" menuText="Events"/>
+            <x-sidebar.single-menu-item menuIcon="calendar" menuText="Events" menuLink="{{ route('community.events.index') }}"/>
             <x-sidebar.single-menu-item menuIcon="book-open-cover" menuText="Resources" />
             <x-sidebar.single-menu-item menuIcon="hammer-brush" menuText="Service Requests" menuLink="{{ route('service-requests.index') }}" />
             <x-sidebar.single-menu-item menuIcon="hammer-brush" menuText="District Ranking" menuLink="" />
@@ -37,15 +38,15 @@
             <div class="menu-header">Settings</div>
 
             <x-sidebar.single-menu-item menuIcon="users" menuText="Users" menuLink="{{ route('users.index') }}" />
-            <x-sidebar.single-menu-item menuIcon="settings" menuText="Configuration" />
+            <!-- <x-sidebar.single-menu-item menuIcon="settings" menuText="Configuration" /> -->
 
 
-            <div class="p-3 px-4 mt-auto hide-on-minified">
+            <!-- <div class="p-3 px-4 mt-auto hide-on-minified">
                 <a href="#"
                     class="btn btn-warning d-block w-100 fw-600 rounded-pill text-purple">
                     <i class="fi fi-br-interrogation"></i> Help
                 </a>
-            </div>
+            </div> -->
         </div>
         <!-- END menu -->
     </div>

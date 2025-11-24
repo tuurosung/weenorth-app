@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\UpdateUserRequest;
 use App\Models\District;
 use App\Services\Districts\DistrictService;
+use App\Services\Regions\RegionService;
 
 class UserController extends Controller
 {
@@ -32,7 +33,8 @@ class UserController extends Controller
 
         return view('app.users.index', [
             'users' => $users,
-            'districts' => $this->districts
+            'districts' => $this->districts,
+            'regions' => (new RegionService())->getRegionsArray(),
         ]);
     }
 

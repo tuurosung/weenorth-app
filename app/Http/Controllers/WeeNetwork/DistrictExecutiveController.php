@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\WeeNetwork;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Executives\DistrictExecutive;
 
 class DistrictExecutiveController extends Controller
 {
@@ -12,6 +13,8 @@ class DistrictExecutiveController extends Controller
      */
     public function __invoke(Request $request)
     {
-        //
+        $districtExecutives = DistrictExecutive::all();
+
+        return view('app.the-network.district-executives', compact('districtExecutives'));
     }
 }

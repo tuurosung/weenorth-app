@@ -60,7 +60,8 @@
     <!-- WeeNorth CSS -->
     <link href="{{ asset('css/weenorth.css') }}" type="text/css" rel="stylesheet" />
 
-@vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- only load vite if we are not in production -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 
 <style type="text/css">
@@ -122,6 +123,10 @@
         src: url({{ asset('font/Avante/ITCAvantGardePro-Md.otf') }});
         font-weight: normal;
         font-style: normal;
+    }
+
+    .cal-sans {
+        font-family: 'Cal Sans', sans-serif;
     }
 
     .bootbox .modal-header {
@@ -245,5 +250,19 @@
 
         .form-label {
             font-weight: 500;
+        }
+
+        .btn-sm {
+            padding-top: 0.5rem !important;
+            padding-bottom: 0.5rem !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+            font-size: 0.765625rem !important;
+            border-radius: 8px !important;
+            border:none;
+        }
+
+        .form-select{
+            --bs-form-select-bg-img: url({{ asset('images/svgs/caret-down.svg') }}) !important;
         }
 </style>

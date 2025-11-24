@@ -27,13 +27,13 @@
     <!-- BEGIN menu -->
     <div class="menu">
         <form class="menu-search" method="POST" name="header_search_form">
-            <div class="menu-search-icon"><i class="fa fa-search"></i></div>
+            <!-- <div class="menu-search-icon"><i class="fa fa-search"></i></div>
             <div class="menu-search-input">
                 <input type="text" class="form-control" placeholder="Search menu...">
-            </div>
+            </div> -->
         </form>
         <div class="menu-item dropdown">
-            <a href="#" data-bs-toggle="dropdown" data-display="static" class="menu-link">
+            <a href="#" data-bs-toggle="dropdown" data-toggle="dropdown" data-display="static" class="menu-link">
                 <div class="menu-icon"><i class="fa fa-bell nav-icon"></i></div>
                 <div class="menu-label">3</div>
             </a>
@@ -70,7 +70,7 @@
             </div>
         </div>
         <div class="menu-item dropdown">
-            <a href="#" data-bs-toggle="dropdown" data-display="static" class="menu-link">
+            <a href="#" data-bs-toggle="dropdown" data-toggle="dropdown" data-display="static" class="menu-link">
                 <div class="menu-img online">
                     <img src="{{ asset('images/dummy_female.png') }}" alt="" class="ms-100 mh-100 rounded-circle">
                 </div>

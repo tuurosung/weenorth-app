@@ -39,18 +39,18 @@
                         <td class="text-end">
                             <div class="dropdown">
                                 <a class="dropdown-toggle text-dark" type="button" id="triggerId"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Options
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="triggerId">
-                                    <a class="dropdown-item d-flex edit-user" href="#" data-url="{{ route('users.edit', $user->id) }}">
+                                    <a class="dropdown-item d-flex edit-user-button" href="#" data-edit-url="{{ route('users.edit', $user->id) }}">
                                         Edit
                                         <i class="fi fi-rc-pencil ms-auto text-primary"></i>
                                     </a>
                                     <form method="POST" action="{{ route('users.delete', $user) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <a class="dropdown-item d-flex delete-user" href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                                        <a class="dropdown-item d-flex delete-user-button" href="#">
                                             Delete
                                             <i class="fi fi-rc-trash ms-auto text-danger"></i>
                                         </a>
@@ -70,23 +70,27 @@
 
     @include('app.users.modals.new-user-modal')
 
+
 @endsection
 
+@push('scripts')
+    @vite(['resources/js/modules/users/users.js'])
+@endpush
 
 @section('js')
 
     <script>
 
-       $(document).on('click', '.table tbody .edit-user', function(event){
+    //    $(document).on('click', '.table tbody .edit-user', function(event){
 
-            let $url = $(this).data('url');
+    //         let $url = $(this).data('url');
 
-            $.get($url, function(msg){
-                $('#modal_holder').html(msg);
-                $('#editUserModal').modal('show');
-            })
+    //         $.get($url, function(msg){
+    //             $('#modal_holder').html(msg);
+    //             $('#editUserModal').modal('show');
+    //         })
 
-       })
+    //    })
 
     </script>
 

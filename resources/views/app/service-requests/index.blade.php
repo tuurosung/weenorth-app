@@ -3,116 +3,115 @@
 
 @section('content')
 
-    <x-headers.top-header pageTitle="Service Requests">
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newServiceRequest">
-            <i class="fi fi-rc-plus me-3"></i>
-            New Request
-        </button>
-    </x-headers.top-header>
+      <x-headers.top-header2 title="Service Requests">
+            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newServiceRequest">
+                New Request
+            </button>
+        </x-headers.top-header2>
 
-    @include('partials.errors')
-
+        @include('partials.errors')
 
 
-    <div class="card border-0">
-        <div class="card-body">
 
-            <table class="table datatables table-sm">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Client Name</th>
-                        <th scope="col">Contact</th>
-                        <th scope="col">Service Center</th>
-                        <th scope="col">Region</th>
-                        <th scope="col">District</th>
-                        <th scope="col">Status</th>
-                        <th scope="col" class="text-end">Options</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($serviceRequests as $serviceRequest)
-                        <tr class="">
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $serviceRequest->client_name }}</td>
-                            <td>
-                                <p class="mb-0">{{ $serviceRequest->client_phone }}</p>
-                                {{ $serviceRequest->client_email }}
+        <div class="card border-0">
+            <div class="card-body">
 
-                            </td>
-                            <td>{{ $serviceRequest->serviceCenter->location ?? 'N/A' }}</td>
-                            <td>{{ $serviceRequest->region->region_name ?? 'N/A' }}</td>
-                            <td>{{ $serviceRequest->district->district_name ?? 'N/A' }}</td>
-                            <td class="{{ $serviceRequest->status_colour }}">{{ $serviceRequest->status }}</td>
-                            <td class="text-end">
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle text-decoration-none text-dark" type="button" id="triggerId"
-                                        data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        Option
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="triggerId">
-
-                                        <a class="dropdown-item d-flex" href="#">
-                                            View
-                                            <i class="fi fi-br-eye text-info ms-auto"></i>
-                                        </a>
-
-                                        @if($serviceRequest->isPending())
-
-                                        <form method="POST"
-                                            action="{{  route('service-requests.approve-request', $serviceRequest) }}">
-                                            @csrf
-                                            @method('PATCH')
-                                            <a class="dropdown-item d-flex approve-request" href="javascript:void(0)">
-                                                Accept
-                                                <i class="fi fi-br-check text-success ms-auto"></i>
-                                            </a>
-                                        </form>
-
-                                        <form method="POST"
-                                            action="{{  route('service-requests.reject-request', $serviceRequest) }}">
-                                            @csrf
-                                            @method('PATCH')
-                                            <a class="dropdown-item d-flex reject-request" href="javascript:void(0)">
-                                                Reject
-                                                <i class="fi fi-br-x text-danger ms-auto"></i>
-                                            </a>
-                                        </form>
-
-                                        @endif
-
-
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item d-flex edit-request" href="javascript:void(0)"
-                                            data-url="{{ route('service-requests.edit', $serviceRequest) }}">
-                                            Edit
-                                            <i class="fi fi-br-pencil text-primary ms-auto"></i>
-                                        </a>
-                                        <form method="POST" action="{{ route('service-requests.destroy', $serviceRequest) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <a class="dropdown-item d-flex delete-request" href="#">
-                                                Delete
-                                                <i class="fi fi-br-trash text-danger ms-auto"></i>
-                                            </a>
-                                        </form>
-                                    </div>
-                                </div>
-
-                            </td>
+                <table class="table datatables table-sm">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Client Name</th>
+                            <th scope="col">Contact</th>
+                            <th scope="col">Service Center</th>
+                            <th scope="col">Region</th>
+                            <th scope="col">District</th>
+                            <th scope="col">Status</th>
+                            <th scope="col" class="text-end">Options</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($serviceRequests as $serviceRequest)
+                            <tr class="">
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $serviceRequest->client_name }}</td>
+                                <td>
+                                    <p class="mb-0">{{ $serviceRequest->client_phone }}</p>
+                                    {{ $serviceRequest->client_email }}
+
+                                </td>
+                                <td>{{ $serviceRequest->serviceCenter->location ?? 'N/A' }}</td>
+                                <td>{{ $serviceRequest->region->region_name ?? 'N/A' }}</td>
+                                <td>{{ $serviceRequest->district->district_name ?? 'N/A' }}</td>
+                                <td class="{{ $serviceRequest->status_colour }}">{{ $serviceRequest->status }}</td>
+                                <td class="text-end">
+
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle text-decoration-none text-dark" type="button" id="triggerId"
+                                            data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Option
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="triggerId">
+
+                                            <a class="dropdown-item d-flex" href="#">
+                                                View
+                                                <i class="fi fi-br-eye text-info ms-auto"></i>
+                                            </a>
+
+                                            @if($serviceRequest->isPending())
+
+                                            <form method="POST"
+                                                action="{{  route('service-requests.approve-request', $serviceRequest) }}">
+                                                @csrf
+                                                @method('PATCH')
+                                                <a class="dropdown-item d-flex approve-request" href="javascript:void(0)">
+                                                    Accept
+                                                    <i class="fi fi-br-check text-success ms-auto"></i>
+                                                </a>
+                                            </form>
+
+                                            <form method="POST"
+                                                action="{{  route('service-requests.reject-request', $serviceRequest) }}">
+                                                @csrf
+                                                @method('PATCH')
+                                                <a class="dropdown-item d-flex reject-request" href="javascript:void(0)">
+                                                    Reject
+                                                    <i class="fi fi-br-x text-danger ms-auto"></i>
+                                                </a>
+                                            </form>
+
+                                            @endif
 
 
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item d-flex edit-request" href="javascript:void(0)"
+                                                data-url="{{ route('service-requests.edit', $serviceRequest) }}">
+                                                Edit
+                                                <i class="fi fi-br-pencil text-primary ms-auto"></i>
+                                            </a>
+                                            <form method="POST" action="{{ route('service-requests.destroy', $serviceRequest) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a class="dropdown-item d-flex delete-request" href="#">
+                                                    Delete
+                                                    <i class="fi fi-br-trash text-danger ms-auto"></i>
+                                                </a>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+
+            </div>
         </div>
-    </div>
 
-    @include('app.service-requests.modals.new-request')
-    <div id="modal_holder"></div>
+        @include('app.service-requests.modals.new-request')
+        <div id="modal_holder"></div>
 @endsection
 
 

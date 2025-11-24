@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
-    return view('website.index');
+    return redirect('login');
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {

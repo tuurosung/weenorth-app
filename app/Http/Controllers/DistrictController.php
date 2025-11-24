@@ -48,7 +48,7 @@ class DistrictController extends Controller
     public function store(StoreDistrictRequest $request)
     {
         $this->districtService->dropCaches(); // Clear caches before storing
-        
+
         return $this->handleStore($request->validated());
     }
 

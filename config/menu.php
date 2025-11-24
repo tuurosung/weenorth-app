@@ -22,10 +22,6 @@
                 'menuText' => 'All Trades',
                 'menuLink' => '/trade/index'
             ],
-            [
-                'menuText' => 'Add Trade',
-                'menuLink' => '/trade/index'
-            ]
         ],
 
         'network' => [
@@ -35,7 +31,7 @@
             ],
             [
                 'menuText' => 'District Executives',
-                'menuLink' => '#'
+                'menuLink' => '/network/district-executives'
             ],
             [
                 'menuText' => 'Trade Mentors',
@@ -56,7 +52,7 @@
             [
                 'menuText' => 'Zonal Coordinators',
                 'menuLink' => '/service-center/index'
-            ]
+            ]   
         ]
 
         ];

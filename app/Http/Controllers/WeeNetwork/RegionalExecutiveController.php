@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\WeeNetwork;
 
 use App\Http\Controllers\Controller;
+use App\Models\Executives\RegionalExecutive;
 use Illuminate\Http\Request;
 
 class RegionalExecutiveController extends Controller
@@ -12,6 +13,10 @@ class RegionalExecutiveController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('app.the-network.regional-executives');
+        $regionalExecutives = RegionalExecutive::get();
+
+        return view('app.the-network.regional-executives', [
+            'regionalExecutives' => $regionalExecutives
+        ]);
     }
 }

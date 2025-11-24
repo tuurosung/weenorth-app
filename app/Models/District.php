@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Executives\DistrictExecutive;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class District extends Model
 {
@@ -35,6 +36,16 @@ class District extends Model
     {
         return $this->belongsTo(Region::class)
             ->withDefault(['region_name' => 'Undefined Region']);
+    }
+
+    public function members(): HasMany
+    {
+        return $this->hasMany(Member::class);
+    }
+
+    public function executives(): HasMany
+    {
+        return $this->hasMany(DistrictExecutive::class);
     }
 
     /**

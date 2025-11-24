@@ -45,7 +45,7 @@ class RegistrationController extends Controller
             // log user in
             Auth::login($createUser);
 
-            return redirect()->route('profile');
+            return redirect()->route('member-profile.index');
         }
 
         return redirect()->back()->withErrors('Failed to create user');

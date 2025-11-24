@@ -35,6 +35,13 @@ class AuthenticatedSessionController extends Controller
             Session::put('weenorth_id', Auth::user()->weenorth_id);
             Session::put('access_level', Auth::user()->access_level);
             Session::put('name', Auth::user()->name);
+
+            // set sessions for logged in user
+            Session::put('active_user_data', [
+                'weenorth_id' => Auth::user()->weenorth_id,
+                'access_level' => Auth::user()->access_level,
+                'name' => Auth::user()->name
+            ]);
         }
 
         // if user is member, redirect to member dashboard

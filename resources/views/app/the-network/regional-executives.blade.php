@@ -9,31 +9,32 @@
 
     <div class="card border-0">
         <div class="card-body">
-            <div
-                class="table-responsive"
-            >
-                <table
-                    class="table datatables align-middle mb-0"
-                >
+            <div class="table-responsive">
+                <table class="table table-sm datatables align-middle mb-0">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone Number</th>
+                            <th scope="col">Member's Name</th>
+                            <th scope="col">Region</th>
+                            <th scope="col">Position</th>
+                            <th class="text-end">Options</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="">
-                            <td scope="row">R1C1</td>
-                            <td>R1C2</td>
-                            <td>R1C3</td>
-                        </tr>
-                        <tr class="">
-                            <td scope="row">Item</td>
-                            <td>Item</td>
-                            <td>Item</td>
-                        </tr>
+                        @foreach ($regionalExecutives as $regionalExecutive)
+                            <tr class="">
+                                <td scope="row">{{ $loop->iteration }}</td>
+                                <td>{{ $regionalExecutive->member->name }}</td>
+                                <td>{{ $regionalExecutive->region->region_name }}</td>
+                                <td>{{ $regionalExecutive->position_name }}</td>
+                                <td class="text-end">
+                                    <a href="" class="text-danger">
+                                        <i class="fi fi-sr-trash"></i>
+                                        Remove
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
