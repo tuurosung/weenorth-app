@@ -13,7 +13,11 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $district->created_at }}</td>
-                <td>{{ $district->district_name }}</td>
+                <td>
+                    <a href="{{ route('district.show', $district) }}" class="text-underline">
+                        {{ $district->district_name }}
+                    </a>
+                </td>
                 <td>{{ $district->region?->region_name }}</td>
                 <td class="text-end">
                     <a href="{{ route('district.show', $district->id) }}" class="me-2">View</a>

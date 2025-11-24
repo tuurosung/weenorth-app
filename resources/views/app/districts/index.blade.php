@@ -3,14 +3,11 @@
 
 @section('content')
 
-<x-headers.top-header pageTitle="Districts">
-
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newDistrictModal">
-        <i class="fi fi-br-plus me-3"></i>
+<x-headers.top-header2 title="Districts">
+    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newDistrictModal">
         Create District
     </button>
-
-</x-headers.top-header>
+</x-headers.top-header2>
 
 @include('partials.errors')
 
@@ -38,7 +35,7 @@
         <div id="data_holder">
 
             <table class="table table-sm datatables">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Date Created</th>
@@ -52,10 +49,14 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $district->created_at }}</td>
-                        <td>{{ $district->district_name }}</td>
+                        <td>
+                            <a href="{{ route('district.show', $district) }}" class="text-underline">
+                                {{ $district->district_name }}
+                            </a>
+                        </td>
                         <td>{{ $district->region?->region_name }}</td>
                         <td class="text-end">
-                            <a href="{{ route('district.show', $district->id) }}" class="me-2">View</a>
+
                             <a href="javascript:void(0)" data-url="{{ route('district.edit', $district) }}"
                                 class="me-2 edit">
                                 <i class="fi fi-br-pencil"></i>
@@ -176,7 +177,9 @@ $(document).ready(function() {
 
         let $url = "{{ route('districts.filter-districts-list') }}"
 
-        $.get($url, { regionId: regionId }, function(data) {
+        $.get($url, {
+            regionId: regionId
+        }, function(data) {
             $('#data_holder').html(data);
         });
     })
