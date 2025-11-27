@@ -2,7 +2,7 @@
     <div class="row align-items-center">
         <div class="col-12">
             <div class="d-sm-flex align-items-center justify-space-between">
-                <h3 class="mb-4 mb-sm-0 cal-sans-regular fw-500">{{ $title }}</h3>
+                <h4 class="mb-4 mb-sm-0 cal-sans-regular fw-500">{{ $title }}</h4>
                 <nav aria-label="breadcrumb" class="ms-auto">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item d-flex align-items-center me-3">
