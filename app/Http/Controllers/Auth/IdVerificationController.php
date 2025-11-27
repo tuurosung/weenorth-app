@@ -40,7 +40,12 @@ class IdVerificationController extends Controller
 
         $otp = rand(1000, 9999);
 
-        $message = "Dear {$verificationResults->name}, your Weenorth ID has been verified. Use this OTP to complete your registration: {$otp}";
+        $message = sprintf(
+            "Dear %s, your Weenorth ID has been verified.
+            Use this OTP to complete your registration: %s",
+            $verificationResults->name,
+            $otp
+        );
 
         $this->messagingService->setRecipient($phoneNumber);
         $this->messagingService->setMessage($message);
@@ -51,6 +56,7 @@ class IdVerificationController extends Controller
             'weenorth_id' => $weenorth_id,
             'name' => $verificationResults->name,
             'otp' => $otp,
+            'otp_verification_pending' => true,
             'expires_at' => now()->addMinutes(5)->timestamp
         ]);
 
