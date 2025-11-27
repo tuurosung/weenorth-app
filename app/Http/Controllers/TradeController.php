@@ -18,8 +18,8 @@ class TradeController extends Controller
         protected $model = new Trade(),
         private $modelName = "Trade",
         public $tradeService = new TradeService()
-    )
-    {}
+    ){}
+
 
     /**
      * Display a listing of the resource.
@@ -85,7 +85,12 @@ class TradeController extends Controller
     public function destroy(Trade $trade)
     {
         $this->tradeService->dropCaches(); // Clear cache before deleting a trade
-        
+
+        // ensure the trade has no associated tradeswomen before deleting
+        if ($trade->tradeswomen()->count() > 0) {
+            return redirect()->back()->withErrors(['error' => 'Cannot delete trade with associated tradeswomen.']);
+        }
+
         return $this->handleDelete($trade);
     }
 }
