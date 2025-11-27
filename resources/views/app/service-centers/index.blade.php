@@ -64,36 +64,5 @@
 @endsection
 
 @section('js')
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            $(document).on('click', '.table tbody .edit', function (event) {
-                event.preventDefault();
-                const url = $(this).data('url');
-
-                $.get(url)
-                    .done(function (response) {
-                        $('#modal_holder').html(response)
-                        $('#editServiceCenterModal').modal('show');
-                    })
-                    .fail(function () {
-                        bootbox.alert('Error loading edit form');
-                    });
-            });
-
-            $(document).on('click', '.table tbody .delete', function (event) {
-                event.preventDefault()
-
-                const $form = $(this).closest('form')
-
-                bootbox.confirm("Are you sure you want to delete this service center?", function (answer) {
-                    if (answer) {
-                        $form.submit()
-                    }
-                })
-            })
-        });
-    </script>
-
+    @vite(['resources/js/modules/service-centers/service-center.js'])
 @endsection

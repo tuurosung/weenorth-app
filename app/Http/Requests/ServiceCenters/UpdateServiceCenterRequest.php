@@ -23,7 +23,6 @@ class UpdateServiceCenterRequest extends FormRequest
      */
     public function rules(): array
     {
-        $serviceCenterId = request()->route('service_center')?->id ?? null;
 
         return [
             'district_id' => [
@@ -35,8 +34,6 @@ class UpdateServiceCenterRequest extends FormRequest
                 'required',
                 'max:255',
                 'string',
-                Rule::unique(ServiceCenter::class, 'location')
-                    ->ignore($serviceCenterId, 'id')
             ],
             'town_city' => [
                 'required',
