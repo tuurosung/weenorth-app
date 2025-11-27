@@ -32,15 +32,15 @@ class UpdateMemberRequest extends FormRequest
                 'email',
                 Rule::unique('members', 'email')->ignore($memberId)
             ],
-            'phone' => [
+            'contact' => [
                 'nullable',
                 'string',
                 'max:10',
-                Rule::unique('members', 'phone')->ignore($memberId)
+                Rule::unique('members', 'contact')->ignore($memberId)
             ],
-            'date_of_birth' => ['nullable', 'date'],
-            'gender' => ['nullable'],
-            'cohort' => ['nullable', 'string', 'max:25'],
+            // 'date_of_birth' => ['nullable', 'date'],
+            // 'gender' => ['nullable'],
+            'cohort' => ['nullable', 'string'],
             'address' => ['nullable', 'string'],
             'region_id' => ['nullable', 'exists:regions,id'],
             'district_id' => ['nullable', 'exists:districts,id'],
@@ -49,7 +49,7 @@ class UpdateMemberRequest extends FormRequest
             'skill_level' => ['nullable'],
             'membership_type' => ['required'],
             'membership_status' => ['required'],
-            'joined_date' => ['required', 'date'],
+            'joined_date' => ['nullable', 'date'],
             'bio' => ['nullable', 'string'],
         ];
     }
