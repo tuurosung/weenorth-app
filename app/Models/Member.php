@@ -25,7 +25,7 @@ class Member extends Model
         'first_name',
         'last_name',
         'email',
-        'phone',
+        'contact',
         'date_of_birth',
         'gender',
         'address',
@@ -43,6 +43,7 @@ class Member extends Model
         'is_verified',
         'email_verified_at',
     ];
+
 
     protected $casts = [
         'date_of_birth' => 'date',
