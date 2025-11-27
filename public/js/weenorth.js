@@ -133,6 +133,7 @@ $(document).ready(function() {
 });
 
 initializeSelect2();
+initializeDatepickers();
 
 function initializeSelect2()
 {
@@ -145,4 +146,16 @@ function initializeSelect2()
             })
        }
     })
+}
+
+function initializeDatepickers()
+{
+    $('.datepicker').each(function () {
+        if (!$(this).data('datepicker')) {
+            $(this).datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true
+            });
+        }
+    });
 }
