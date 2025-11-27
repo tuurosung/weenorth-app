@@ -24,6 +24,10 @@ class RegistrationRequest extends FormRequest
      */
     public function rules(): array
     {
+        // if (!Session::has('weenorth_registration_session')) {
+        //     return redirect()->back()->withErrors(['Registration session has expired. Please start the registration process again.']);
+        // }
+
         $registrationSession = Session::get('weenorth_registration_session');
         $otp = $registrationSession['otp'];
 
