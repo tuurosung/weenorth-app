@@ -41,6 +41,7 @@
                         <th scope="col">Date Created</th>
                         <th scope="col">District Name</th>
                         <th scope="col">Region</th>
+                        <th scope="col" class="text-center">Members</th>
                         <th scope="col" class="text-end">Actions</th>
                     </tr>
                 </thead>
@@ -55,6 +56,7 @@
                             </a>
                         </td>
                         <td>{{ $district->region?->region_name }}</td>
+                        <td class="text-center">{{ $district->member_count }}</td>
                         <td class="text-end">
 
                             <a href="javascript:void(0)" data-url="{{ route('district.edit', $district) }}"
