@@ -19,12 +19,13 @@ class FilterMemberController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $searchTerm = $request->input('searchTerm');
         $regionId = $request->input('regionId');
         $districtId = $request->input('districtId');
         $tradeId = $request->input('tradeId');
 
 
-        $filteredMembers = $this->memberService->filterMembers($regionId, $districtId, $tradeId);
+        $filteredMembers = $this->memberService->filterMembers($searchTerm, $regionId, $districtId, $tradeId);
         return view('app.members.filtered-members', [
             'members' => $filteredMembers
         ]);
