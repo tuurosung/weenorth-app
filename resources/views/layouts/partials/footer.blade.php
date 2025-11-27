@@ -42,4 +42,10 @@
 
 <script src="{{ asset('js/weenorth.js') }}"></script>
 
+<script>
+    window.routes = {
+        'filterDistrictsByRegionId': "{{ route('districts.filter-districts') }}"
+    }
+</script>
+
 @stack('scripts')
