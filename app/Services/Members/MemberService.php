@@ -36,15 +36,20 @@ class MemberService
      */
     public function getMembers()
     {
-        return $this->rememberCache(
-            'all_members',
-            function () {
-                return Member::with(['region', 'district', 'trade'])
-                    ->orderBy('last_name')
-                    ->orderBy('first_name')
-                    ->get();
-            }
-        );
+        // return $this->rememberCache(
+        //     'all_members',
+        //     function () {
+        //         return Member::with(['region', 'district', 'trade'])
+        //             ->orderBy('last_name')
+        //             ->orderBy('first_name')
+        //             ->get();
+        //     }
+        // );
+        return Member::query()
+            ->orderBy('last_name')
+            ->orderBy('first_name')
+            ->limit(100)
+            ->get();
     }
 
 
@@ -71,19 +76,32 @@ class MemberService
     }
 
 
-    public function filterMembers($regionId, $districtId, $tradeId)
+    public function filterMembers($searchTerm, $regionId, $districtId, $tradeId)
     {
-        return Member::with(['region', 'district', 'trade'])
-            ->when($regionId, function ($query) use ($regionId) {
-                return $query->where('region_id', $regionId);
-            })
-            ->when($districtId, function ($query) use ($districtId) {
-                return $query->where('district_id', $districtId);
-            })
-            ->when($tradeId, function ($query) use ($tradeId) {
-                return $query->where('trade_id', $tradeId);
-            })
-            ->orderBy('last_name')
+        $baseQuery = Member::query();
+
+        if ($searchTerm) {
+            $baseQuery->where(function ($query) use ($searchTerm) {
+                $query->where('first_name', 'like', '%' . $searchTerm . '%')
+                      ->orWhere('last_name', 'like', '%' . $searchTerm . '%')
+                      ->orWhere('email', 'like', '%' . $searchTerm . '%')
+                      ->orWhere('contact', 'like', '%' . $searchTerm . '%')
+                      ->orWhereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
+            });
+        }
+        $baseQuery->when($regionId, function ($query) use ($regionId) {
+            return $query->where('region_id', $regionId);
+        });
+
+        $baseQuery->when($districtId, function ($query) use ($districtId) {
+            return $query->where('district_id', $districtId);
+        });
+
+        $baseQuery->when($tradeId, function ($query) use ($tradeId) {
+            return $query->where('trade_id', $tradeId);
+        });
+
+        return $baseQuery->orderBy('last_name')
             ->orderBy('first_name')
             ->get();
     }
