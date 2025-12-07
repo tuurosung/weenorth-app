@@ -44,7 +44,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="rounded-2"
-                                style="background-image: url({{ asset('images/banner.jpg') }}); background-size: cover; background-position: center; height: 100%;">
+                                style="background-image: url({{ asset('images/landing.jpg') }}); background-size: cover; background-position: center; height: 100%;">
 
                             </div>
                         </div>
@@ -103,7 +103,7 @@
 
                                         <!-- Signup Link -->
                                         <div class="signup-link">
-                                            Not registered yet? <a href="{{ route('register') }}">Create an account</a>
+                                            Not registered yet? <a href="{{ route('signup.register') }}">Create an account</a>
                                         </div>
 
                                     </div>
