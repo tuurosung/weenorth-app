@@ -87,57 +87,59 @@
                     </thead>
                     <tbody>
                         @foreach ($members as $member)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>
-                                <p class="mb-0 text-sm fs-11px text-primary">
-                                    <a href="{{ route('member.show', $member) }}" class="text-primary">
-                                        {{ $member->weenorth_id }}
-                                    </a>
-                                </p>
-                                <p class="mb-0">{{ $member->full_name }}</p>
-                            </td>
-                            <td>{{ Str::limit($member->trade?->trade_name ?: 'N/A', 20) }}</td>
-                            <td>
-                                <p class="mb-0 fs-11px">{{ $member->region?->region_name ?: 'N/A' }}</p>
-                                <p class="mb-0">{{ $member->district?->district_name ?: 'N/A' }}</p>
-
-                            </td>
-                            <td>{{ $member->joined_date?->format('d M Y') }}</td>
-                            <td class="text-end align-middle">
-
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle text-decoration-non text-dark" type="button" id="triggerId"
-                                        data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        Options
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="triggerId">
-                                        <a href="{{ route('member.show', $member) }}" class="dropdown-item d-flex">
-                                            View
-                                            <i class="fi fi-br-eye ms-auto text-primary"></i>
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>
+                                    <p class="mb-0 text-sm fs-11px text-primary">
+                                        <a href="{{ route('member.show', $member) }}" class="text-primary">
+                                            {{ $member->weenorth_id }}
                                         </a>
-                                        <a href="javascript:void(0)" class="dropdown-item d-flex edit"
-                                            data-url="{{ route('member.edit', $member) }}">
-                                            Edit
-                                            <i class="fi fi-br-pencil ms-auto text-info"></i>
+                                    </p>
+                                    <p class="mb-0">{{ $member->full_name }}</p>
+                                </td>
+                                <td>{{ Str::limit($member->trade?->trade_name ?: 'N/A', 20) }}</td>
+                                <td>
+                                    <p class="mb-0 fs-11px">{{ $member->region?->region_name ?: 'N/A' }}</p>
+                                    <p class="mb-0">{{ $member->district?->district_name ?: 'N/A' }}</p>
+
+                                </td>
+                                <td>{{ $member->joined_date?->format('d M Y') }}</td>
+                                <td class="text-end align-middle">
+
+
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle text-decoration-non text-dark" type="button" id="triggerId"
+                                            data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Options
                                         </a>
-                                        <form action="{{ route('member.delete', $member) }}" method="POST"
-                                            style="display: inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <a href="javascript:void(0)" class="dropdown-item d-flex delete" type="submit">
-                                                Delete
-                                                <i class="fi fi-br-trash ms-auto text-danger"></i>
+                                        <div class="dropdown-menu" aria-labelledby="triggerId">
+                                            <a href="{{ route('member.show', $member) }}" class="dropdown-item d-flex">
+                                                View
+                                                <i class="fi fi-br-eye ms-auto text-primary"></i>
                                             </a>
-                                        </form>
+
+                                            @can('admin-only')
+                                                <a href="javascript:void(0)" class="dropdown-item d-flex edit" data-url="{{ route('member.edit', $member) }}">
+                                                    Edit
+                                                    <i class="fi fi-br-pencil ms-auto text-info"></i>
+                                                </a>
+                                                <form action="{{ route('member.delete', $member) }}" method="POST" style="display: inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <a href="javascript:void(0)" class="dropdown-item d-flex delete" type="submit">
+                                                        Delete
+                                                        <i class="fi fi-br-trash ms-auto text-danger"></i>
+                                                    </a>
+                                                </form>
+                                            @endcan
+
+                                        </div>
                                     </div>
-                                </div>
 
 
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -149,7 +151,7 @@
 
     @include('app.members.modals.create')
 
-    <div id="modal_holder"></div>   
+    <div id="modal_holder"></div>
 
 
 @endsection
