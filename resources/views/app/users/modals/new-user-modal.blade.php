@@ -8,16 +8,22 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <form method="POST" action="{{ route('users.store') }}">
+                @csrf
+                <div class="modal-body">
 
-                @include('app.users.forms.new-user-form')
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Close
-                </button>
-                <button type="button" class="btn btn-primary">Save</button>
-            </div>
+                    @include('app.users.forms.new-user-form')
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fi fi-rr-check me-3"></i>
+                        Create User
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
