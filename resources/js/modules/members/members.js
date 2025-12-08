@@ -91,8 +91,6 @@ export const HandleMembers = {
 }
 
 
-$(document).ready(
-    () => {
-        HandleMembers.init();
-    }
-);
+$(document).ready(() => {
+    HandleMembers.init();
+});
