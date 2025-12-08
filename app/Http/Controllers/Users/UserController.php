@@ -81,8 +81,22 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        // prevent user from deleting themselves
+        if (auth()->user()->id === $user->id) {
+            return redirect()
+                ->back()
+                ->withErrors(['error' => 'Lol! You cannot delete your own account.']);
+        }
+
+        // Only authorized users who has administrative privileges can delete users
+        if (!auth()->user()->isAdmin()) {
+            return redirect()
+                ->back()
+                ->withErrors(['error' => 'You do not have permission to delete users.']);
+        }
+
+        return $this->handleDelete($user);
     }
 }
