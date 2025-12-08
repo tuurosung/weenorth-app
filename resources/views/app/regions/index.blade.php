@@ -4,9 +4,13 @@
 @section('content')
 
     <x-headers.top-header2 title="Regions">
-        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newRegionModal">
-            Create Region
-        </button>
+
+        @can('admin-only')
+            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newRegionModal">
+                Create Region
+            </button>
+        @endcan
+
     </x-headers.top-header2>
 
     @include('partials.errors')
@@ -36,16 +40,19 @@
                         <td>{{ $region->districts_count }}</td>
                         <td class="text-end">
 
-                            <a href="javascript:void(0)" data-url="{{ route('region.edit', $region) }}" class="me-2 text-primary edit">
-                                Edit
-                            </a>
-                            <form method="POST" action="{{ route('region.delete', $region) }}" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <a href="javascript:void(0)" class="text-danger delete">
-                                    Delete
+                            @can('admin-only')
+                                <a href="javascript:void(0)" data-url="{{ route('region.edit', $region) }}" class="me-2 text-primary edit">
+                                    Edit
                                 </a>
-                            </form>
+                                <form method="POST" action="{{ route('region.delete', $region) }}" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="javascript:void(0)" class="text-danger delete">
+                                        Delete
+                                    </a>
+                                </form>
+                            @endcan
+
                         </td>
                     </tr>
                 @endforeach
