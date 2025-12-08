@@ -3,12 +3,18 @@
 
 @section('content')
 
-    <x-headers.top-header pageTitle="Users">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newUserModal">
-            <i class="fa fa-plus me-3"></i>
-            Add User
-        </button>
-    </x-headers.top-header>
+    <x-headers.top-header2 title="Users">
+
+        @can('admin-only')
+            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newUserModal">
+                <i class="fa fa-plus me-3"></i>
+                Add User
+            </button>
+        @endcan
+
+    </x-headers.top-header2>
+
+
 
     @include('partials.errors')
 
@@ -37,6 +43,7 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->access_level_description }}</td>
                         <td class="text-end">
+                            @can('admin-only')
                             <div class="dropdown">
                                 <a class="dropdown-toggle text-dark" type="button" id="triggerId"
                                     data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,6 +64,7 @@
                                     </form>
                                 </div>
                             </div>
+                            @endcan
                         </td>
                     </tr>
                     @endforeach
@@ -70,28 +78,9 @@
 
     @include('app.users.modals.new-user-modal')
 
-
 @endsection
 
-@push('scripts')
-    @vite(['resources/js/modules/users/users.js'])
-@endpush
 
 @section('js')
-
-    <script>
-
-    //    $(document).on('click', '.table tbody .edit-user', function(event){
-
-    //         let $url = $(this).data('url');
-
-    //         $.get($url, function(msg){
-    //             $('#modal_holder').html(msg);
-    //             $('#editUserModal').modal('show');
-    //         })
-
-    //    })
-
-    </script>
-
+    @vite(['resources/js/modules/users/users.js'])
 @endsection
