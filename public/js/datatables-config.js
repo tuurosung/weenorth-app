@@ -30,5 +30,10 @@ $('.datatables').DataTable({
             next: "Next",
             previous: "Previous"
         }
+    },
+    layout: {
+        topStart: {
+            buttons: ['excel']
+        }
     }
 });
