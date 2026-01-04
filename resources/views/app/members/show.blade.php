@@ -2,12 +2,9 @@
 
 @section('content')
 
-    <x-headers.top-header pageTitle="Member Details">
-        <a href="{{ route('member.index') }}" class="btn btn-secondary">
-            <i class="fi fi-br-arrow-left me-3"></i>
-            Back to Members
-        </a>
-    </x-headers.top-header>
+    <x-headers.top-header2 title="Member Details"></x-headers.top-header2>
+
+    @include('partials.errors')
 
     <div class="card border-0">
         <div class="card-body">

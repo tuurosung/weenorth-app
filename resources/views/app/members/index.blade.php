@@ -3,8 +3,13 @@
 @section('content')
 
     <x-headers.top-header2 title="Members">
-        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newMemberModal">
+        <button type="button" class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#newMemberModal">
+            <i class="fi fi-rr-plus me-2"></i>
             Register Member
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#uploadMemberModal">
+            <i class="fi fi-rr-file-upload me-2"></i>
+            Upload Member
         </button>
     </x-headers.top-header2>
 
@@ -74,13 +79,15 @@
             </form>
 
             <div id="data_holder">
-                <table class="table table-sm table-condensed datatables">
+                <table class="table table-sm table-condensed datatables" class="display nowrap">
                     <thead class="table-dark">
                         <tr>
                             <th scope="col">#</th>
+                            <th scope="col">Wee-North ID</th>
                             <th scope="col">Full Name</th>
                             <th scope="col">Trade</th>
-                            <th scope="col">Region/District</th>
+                            <th scope="col">Region</th>
+                            <th scope="col">District</th>
                             <th scope="col">Joined Date</th>
                             <th scope="col" class="text-end">Actions</th>
                         </tr>
@@ -90,22 +97,27 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    <p class="mb-0 text-sm fs-11px text-primary">
                                         <a href="{{ route('member.show', $member) }}" class="text-primary">
                                             {{ $member->weenorth_id }}
                                         </a>
-                                    </p>
-                                    <p class="mb-0">{{ $member->full_name }}</p>
                                 </td>
-                                <td>{{ Str::limit($member->trade?->trade_name ?: 'N/A', 20) }}</td>
                                 <td>
-                                    <p class="mb-0 fs-11px">{{ $member->region?->region_name ?: 'N/A' }}</p>
-                                    <p class="mb-0">{{ $member->district?->district_name ?: 'N/A' }}</p>
+                                    {{ $member->full_name }}
+                                </td>
+                                <td>
+                                    {{ Str::limit($member->trade?->trade_name ?: 'N/A', 20) }}
+                                </td>
+                                <td>
+                                    {{ $member->region?->region_name ?: 'N/A' }}
 
                                 </td>
-                                <td>{{ $member->joined_date?->format('d M Y') }}</td>
+                                <td>
+                                    {{ $member->district?->district_name ?: 'N/A' }}
+                                </td>
+                                <td>
+                                    {{ $member->joined_date?->format('d M Y') }}
+                                </td>
                                 <td class="text-end align-middle">
-
 
                                     <div class="dropdown">
                                         <a class="dropdown-toggle text-decoration-non text-dark" type="button" id="triggerId"

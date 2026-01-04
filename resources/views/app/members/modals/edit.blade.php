@@ -11,11 +11,9 @@
             <form method="POST" action="{{ route('member.update', $member->id) }}">
                 @csrf
                 @method('PATCH')
-                <div class="modal-body overflow-auto" style="max-height: 70vh;">
+                <div class="modal-body">
 
                     @include('app.members.forms.edit-member-form')
-
-
 
                 </div>
                 <div class="modal-footer">

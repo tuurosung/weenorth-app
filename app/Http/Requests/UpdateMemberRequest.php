@@ -25,6 +25,13 @@ class UpdateMemberRequest extends FormRequest
         $memberId = optional(request()->route('member'))->id;
 
         return [
+            'weenorth_id' => [
+                'sometimes',
+                'string',
+                Rule::unique('members', 'weenorth_id')->ignore($memberId)
+            ],
+            'cohort' => ['nullable', 'string'],
+            'institution_name' => ['nullable', 'string'],
             'first_name' => ['required', 'string', 'max:100'],
             'last_name' => ['required', 'string', 'max:100'],
             'email' => [
@@ -38,10 +45,8 @@ class UpdateMemberRequest extends FormRequest
                 'max:10',
                 Rule::unique('members', 'contact')->ignore($memberId)
             ],
-            // 'date_of_birth' => ['nullable', 'date'],
-            // 'gender' => ['nullable'],
-            'cohort' => ['nullable', 'string'],
-            'address' => ['nullable', 'string'],
+            'date_of_birth' => ['nullable', 'date'],
+            'gender' => ['nullable'],
             'region_id' => ['nullable', 'exists:regions,id'],
             'district_id' => ['nullable', 'exists:districts,id'],
             'trade_id' => ['nullable', 'exists:trades,id'],

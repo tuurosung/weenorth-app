@@ -1,7 +1,7 @@
-import { InitializeDatatables } from "../plugins/InitializeDatatables";
-import { InitializeDatepickers } from "../plugins/InitializeDatepicker";
-import { InitializeSelect2 } from "../plugins/InitializeSelect2";
-import { HandleRegionChange } from "../plugins/HandleRegionChange";
+import { InitializeDatatables } from "../plugins/InitializeDatatables.js";
+import { InitializeDatepickers } from "../plugins/InitializeDatepicker.js";
+import { InitializeSelect2 } from "../plugins/InitializeSelect2.js";
+import { HandleRegionChange } from "../plugins/HandleRegionChange.js";
 
 export const HandleMembers = {
 

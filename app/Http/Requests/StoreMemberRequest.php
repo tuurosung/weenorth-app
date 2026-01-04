@@ -23,27 +23,28 @@ class StoreMemberRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'member_id' => [
+            'weenorth_id' => [
                 'sometimes',
                 'string',
-                'max:20',
-                'unique:members,member_id'
+                'unique:members,weenorth_id'
             ],
+            'cohort' => ['nullable', 'string'],
+            'institution_name' => ['nullable', 'string'],
             'first_name' => ['required', 'string', 'max:100'],
             'last_name' => ['required', 'string', 'max:100'],
             'email' => ['nullable', 'email', 'unique:members,email'],
-            'phone' => ['nullable', 'string', 'max:20'],
+            'contact' => ['required', 'string', 'max:10'],
             'date_of_birth' => ['nullable', 'date'],
             'gender' => ['nullable'],
-            'cohort' => ['nullable', 'string', 'max:25'],
+
             'address' => ['nullable', 'string'],
             'region_id' => ['nullable', 'exists:regions,id'],
             'district_id' => ['nullable', 'exists:districts,id'],
             'trade_id' => ['nullable', 'exists:trades,id'],
             'experience_years' => ['nullable', 'integer', 'min:0'],
             'skill_level' => ['nullable'],
-            'membership_type' => ['required'],
-            'membership_status' => ['required'],
+            'membership_type' => ['nullable'],
+            'membership_status' => ['nullable'],
             'joined_date' => ['required', 'date'],
             'bio' => ['nullable', 'string'],
         ];

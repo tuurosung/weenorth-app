@@ -20,8 +20,9 @@ class Member extends Model
     protected $table = 'members';
 
     protected $fillable = [
-        'member_id',
+        'weenorth_id',
         'cohort',
+        'institution_name',
         'first_name',
         'last_name',
         'email',
