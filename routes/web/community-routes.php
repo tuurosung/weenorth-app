@@ -9,8 +9,8 @@ Route::prefix('community')
     ->group(function () {
 
 
-        Route::get('/chat', function () {
-            return view('app.community.chat');
+        Route::get('/chat-interface', function () {
+            return view('app.community.chat.chat-interface');
         })->name('chat');
 
 

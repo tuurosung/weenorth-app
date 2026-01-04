@@ -7,6 +7,7 @@ use App\Http\Controllers\ResumeBuilder\SkillController;
 use App\Http\Controllers\ResumeBuilder\MyResumeController;
 use App\Http\Controllers\ResumeBuilder\EducationController;
 use App\Http\Controllers\ResumeBuilder\FilterCitiesController;
+use App\Http\Controllers\ResumeBuilder\PrintResumeController;
 use App\Http\Controllers\ResumeBuilder\WorkExperienceController;
 
 Route::prefix('resume-builder')
@@ -14,6 +15,7 @@ Route::prefix('resume-builder')
     ->group(function () {
 
         Route::get('/', MyResumeController::class)->name('my-resume');
+        Route::get('/print', PrintResumeController::class)->name('print');
 
         Route::get('/filterCities', FilterCitiesController::class)->name('filter-cities');
 
