@@ -1,8 +1,6 @@
 export const HandleShowDistricts = {
 
-    config: {
-
-    },
+    config: {},
 
     'elements': {},
 

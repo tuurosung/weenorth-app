@@ -1,3 +1,17 @@
+import DataTable from "datatables.net-bs5";
+import 'datatables.net-buttons-bs5';
+
+import 'datatables.net-buttons';
+import 'datatables.net-buttons-bs5';
+
+import 'datatables.net-buttons/js/buttons.html5.mjs';
+import 'datatables.net-buttons/js/buttons.print.mjs';
+
+// Import JSZip first
+import jszip from 'jszip';
+import { extend } from "jquery";
+window.JSZip = jszip;
+
 /**
  * DataTables initialization module
  * Handles automatic initialization of DataTables with consistent configuration
@@ -7,24 +21,23 @@ export const InitializeDatatables = {
      * Default DataTable configuration
      */
     config: {
-        sorting: false,
-        paging: true,
-        stateSave: true,
-        pageLength: 10,
-        responsive: true,
-        buttons: [
-            {
-                extend: 'print',
-                className: 'btn btn-default',
-            },
-            {
-                extend: 'csv',
-                className: 'btn btn-default',
-            },
-        ],
-        language: {
-            search: '',
-            searchPlaceholder: 'Search...',
+        // buttons: ['pageLength', 'copy', 'excel', 'pdf', 'print'],
+        paging: false,
+        // lengthMenu: [25, 50, 100, -1],
+        // pageLength: 100,
+        layout: {
+            topStart: {
+                buttons: [
+                    {
+                        extend: 'excel',
+                        text: 'Export to Excel',
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print Table',
+                    }
+                ]
+            }
         },
     },
 
@@ -37,16 +50,13 @@ export const InitializeDatatables = {
 
         const $tables = $(selector);
 
-        if ($tables.length === 0) {
-            console.warn(`No tables found with selector: ${selector}`);
-            return;
-        }
 
-        $tables.each((index, table) => {
-            if (!this.isInitialized(table)) {
-                this.initializeTable(table, customConfig);
-            }
+        $tables.each(function () {
+            var $this = $(this);
+
+            new DataTable('.datatables', InitializeDatatables.config);
         });
+
     },
 
     /**
@@ -88,10 +98,14 @@ export const InitializeDatatables = {
 };
 
 // Auto-initialize on DOM ready
-if (typeof $ !== 'undefined' && $.fn.DataTable) {
-    $(document).ready(() => {
-        InitializeDatatables.init();
-    });
-} else {
-    console.warn('jQuery or DataTables not loaded. Skipping auto-initialization.');
-}
+// if (typeof $ !== 'undefined' && $.fn.DataTable) {
+//     $(document).ready(() => {
+//         InitializeDatatables.init();
+//     });
+// } else {
+//     console.warn('jQuery or DataTables not loaded. Skipping auto-initialization.');
+// }
+
+$(document).ready(() => {
+    InitializeDatatables.init();
+});
