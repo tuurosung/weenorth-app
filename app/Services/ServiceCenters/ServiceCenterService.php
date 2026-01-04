@@ -2,9 +2,10 @@
 
 namespace App\Services\ServiceCenters;
 
-use App\Models\ServiceCenter;
 use App\Models\District;
 use App\Traits\Cacheable;
+use App\Models\ServiceCenter;
+use Illuminate\Support\Facades\Log;
 
 class ServiceCenterService
 {
@@ -35,8 +36,14 @@ class ServiceCenterService
 
 
 
-    public function getServiceCentersByDistrict($districtId)
+    public function getServiceCentersByDistrict(string $districtId)
     {
+
+        if (empty($districtId)) {
+            Log::warning('No district ID provided for fetching service centers.');
+            return null;
+        }
+
         return $this->rememberCache(
             "service_centers_by_district_{$districtId}",
             function () use ($districtId) {

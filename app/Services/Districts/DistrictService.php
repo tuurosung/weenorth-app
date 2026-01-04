@@ -65,6 +65,13 @@ class DistrictService
     }
 
 
+    public function getDistrictNameById(string $districtId): ?string
+    {
+        $district = District::find($districtId);
+        return $district ? $district->district_name : null;
+    }
+
+
     public function dropCaches()
     {
         $this->forgetCache('all_districts');

@@ -46,6 +46,12 @@ class TradeService
         ])->toArray();
     }
 
+    public function getTradeNameById(string $tradeId): ?string
+    {
+        $trade = Trade::find($tradeId);
+        return $trade ? $trade->trade_name : null;
+    }
+
 
     public function dropCaches()
     {

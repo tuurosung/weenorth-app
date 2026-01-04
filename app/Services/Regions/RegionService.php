@@ -65,6 +65,13 @@ class RegionService
     }
 
 
+    public function getRegionNameById(string $regionId): ?string
+    {
+        $region = Region::find($regionId);
+        return $region ? $region->region_name : null;
+    }
+
+
 
     /**
      * Drop caches related to regions.
