@@ -6,8 +6,8 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-            <label for="client_email">Client's Email<span class="text-danger">*</span></label>
-            <input type="email" id="client_email" name="client_email" class="form-control" required>
+            <label for="client_email">Client's Email</label>
+            <input type="email" id="client_email" name="client_email" class="form-control">
         </div>
     </div>
     <div class="col-md-6">
@@ -22,7 +22,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="region_id">Region</label>
-            <select id="region_id" name="region_id" class="form-select select2-input" required>
+            <select id="region_id" name="region_id" class="form-select select2-input region-select" required>
                 <option value="">Select a region</option>
                 @foreach ($regions as $key => $value)
                     <option value="{{ $key }}">{{ $value }}</option>
@@ -33,7 +33,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="district_id">District</label>
-            <select id="district_id" name="district_id" class="form-select select2-input" required>
+            <select id="district_id" name="district_id" class="form-select select2-input district-select" required>
                 <option value="">Select a district</option>
             </select>
         </div>
@@ -44,7 +44,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="service_center_id">Service Center</label>
-            <select id="service_center_id" name="service_center_id" class="form-select select2-input" required>
+            <select id="service_center_id" name="service_center_id" class="form-select select2-input service-center-select" required>
                 <option value="">Select a service center</option>
             </select>
         </div>

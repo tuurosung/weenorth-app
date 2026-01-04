@@ -53,7 +53,7 @@
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="triggerId">
 
-                                            <a class="dropdown-item d-flex" href="#">
+                                            <a class="dropdown-item d-flex" href="{{ route('service-requests.show', $serviceRequest) }}">
                                                 View
                                                 <i class="fi fi-br-eye text-info ms-auto"></i>
                                             </a>
@@ -116,47 +116,50 @@
 
 
 @section('js')
+
+@vite(['resources/js/modules/service-requests/service-request.js'])
+
 <script type="text/javascript">
 $('#service_description').summernote(summernoteConfig)
 
-$('#region_id').on('change', function() {
+// $('#region_id').on('change', function() {
 
-    let $regionId = $(this).val();
-    let $url = "{{ route('districts.filter-districts') }}"
+//     let $regionId = $(this).val();
+//     let $url = "{{-- route('districts.filter-districts') --}}"
 
-    $.ajax({
-        url: $url,
-        method: 'GET',
-        data: {
-            regionId: $regionId
-        },
-        success: function(response) {
-            // Handle the successful response
-            if (response.status === 'success') {
+//     $.ajax({
+//         url: $url,
+//         method: 'GET',
+//         data: {
+//             regionId: $regionId
+//         },
+//         success: function(response) {
+//             // Handle the successful response
+//             if (response.status === 'success') {
 
-                let districts = response.districts;
-                let $districtSelect = $('#district_id');
-                let $options = '<option value="">Select District</option>';
+//                 let districts = response.districts;
+//                 let $districtSelect = $('#district_id');
+//                 let $options = '<option value="">Select District</option>';
 
-                // $districtSelect.empty();
-                // $districtSelect.append('<option value="">Select a district</option>');
+//                 // $districtSelect.empty();
+//                 // $districtSelect.append('<option value="">Select a district</option>');
 
-                $.each(districts, function(key, value) {
-                    $options +=
-                        `<option value="${value.id}">${value.district_name}</option>`;
-                });
+//                 $.each(districts, function(key, value) {
+//                     $options +=
+//                         `<option value="${value.id}">${value.district_name}</option>`;
+//                 });
 
-                $('#district_id').html($options);
+//                 $('#district_id').html($options);
 
-            } else {
-                console.error('Error fetching districts:', response.message);
-            }
-        },
-        error: function(xhr) {
-            // Handle the error
-        }
-    })
-})
+//             } else {
+//                 console.error('Error fetching districts:', response.message);
+//             }
+//         },
+//         error: function(xhr) {
+//             // Handle the error
+//         }
+//     })
+// })
 
 $('#district_id').on('change', function() {
     let $districtId = $(this).val();
