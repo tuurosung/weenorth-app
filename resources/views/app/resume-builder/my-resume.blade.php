@@ -1,105 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-headers.top-header pageTitle="My Resume" />
+
+    <x-headers.top-header2 title="Resume Builder">
+
+        <button class="btn btn-primary btn-sm" id="print-resume-btn" data-url="{{ route('resume-builder.print') }}">
+            <i class="fi fi-rr-print me-2"></i>
+            Print CV
+        </button>
+    </x-headers.top-header2>
 
     @include('partials.errors')
 
-    <!-- tab v2 with card -->
-    <div class="card mb-5 border-0 col-md-9">
-        <ul class="nav nav-tabs nav-tabs-v2 ps-4 pe-4">
-            <li class="nav-item me-3">
-                <a href="#preview" class="nav-link active" data-bs-toggle="tab">
-                    <i class="fi fi-rr-resume me-2"></i>
-                    Resume Preview
-                </a>
-            </li>
-            <li class="nav-item me-3">
-                <a href="#personalInformation" class="nav-link" data-bs-toggle="tab">
-                    <i class="fi fi-rr-user me-2"></i>
-                    Personal Information
-                </a>
-            </li>
-            <li class="nav-item me-3">
-                <a href="#workExperience" class="nav-link" data-bs-toggle="tab">
-                    <i class="fi fi-rr-user me-2"></i>
-                    Work Experience
-                </a>
-            </li>
-            <li class="nav-item me-3">
-                <a href="#education" class="nav-link" data-bs-toggle="tab">
-                    <i class="fi fi-rr-envelope me-2"></i>
-                    Education
-                </a>
-            </li>
-            <li class="nav-item me-3">
-                <a href="#skills" class="nav-link" data-bs-toggle="tab">
-                    <i class="fi fi-rr-tools me-2"></i>
-                    Skills
-                </a>
-            </li>
-            <li class="nav-item me-3">
-                <a href="#projects" class="nav-link" data-bs-toggle="tab">
-                    <i class="fi fi-rr-briefcase me-2"></i>
-                    Projects
-                </a>
-            </li>
-            <li class="nav-item me-3">
-                <a href="#achievements" class="nav-link" data-bs-toggle="tab">
-                    <i class="fi fi-rr-award me-2"></i>
-                    Achievements
-                </a>
-            </li>
-            <li class="nav-item me-3">
-                <a href="#languages" class="nav-link" data-bs-toggle="tab">
-                    <i class="fi fi-rr-language me-2"></i>
-                    Languages
-                </a>
-            </li>
-        </ul>
-        <div class="tab-content p-4">
-            <div class="tab-pane fade show active" id="preview">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="cal-sans ">CURRICULUM VITAE</h4>
+            @include('app.resume-builder.pages.bio')
 
-                @include('app.resume-builder.pages.bio')
+            @include('app.resume-builder.pages.work-experience')
 
-                @include('app.resume-builder.pages.work-experience')
+            @include('app.resume-builder.pages.education')
 
-                @include('app.resume-builder.pages.education')
-
-                @include('app.resume-builder.pages.skills')
-
-            </div>
-            <div class="tab-pane fade" id="personalInformation">
-
-                <div class="d-flex justify-content-between mb-5">
-                    <div>
-                        <h4>Personal Information</h4>
-                    </div>
-                    <div>
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPersonalInfoModal">
-                            <i class="fi fi-rr-plus me-2"></i> Add Personal Info
-                        </button>
-                    </div>
-                </div>
-
-                @include('app.resume-builder.forms.bio.bio-form')
-
-            </div>
-            <div class="tab-pane fade" id="education">
-
-                <div class="d-flex justify-content-between">
-                    <h4>Education History</h4>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEducationModal">
-                        <i class="fi fi-rr-plus me-2"></i> Add Education
-                    </button>
-                </div>
-
-                @include('partials.errors')
-
-
-            </div>
+            @include('app.resume-builder.pages.skills')
         </div>
     </div>
+
 
 
     @include('app.resume-builder.modals.education.education')
@@ -113,6 +38,8 @@
 
 
 @section('js')
+
+    @vite(['resources/js/modules/resume-builder/resume-builder.js'])
     <!-- Bio Scripts -->
     <script type="text/javascript">
 
