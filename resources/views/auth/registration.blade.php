@@ -41,8 +41,8 @@
 
 <body>
     <div class="container-fluid login-container px-2">
-        <div class="row justify-content-center w-100">
-            <div class="login-card col-sm-12 col-lg-3">
+        <div class="row justify-content-center w-100 m-0">
+            <div class="login-card col-sm-12 col-lg-3 m-0">
                 <div class="login-form-section">
 
 

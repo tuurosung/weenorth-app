@@ -13,7 +13,6 @@
 <script src="{{ asset('js/toastify.min.js') }}"></script>
 <script src="{{ asset('js/bootbox.js') }}"></script>
 <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
-<script src="{{-- asset('js/select2.min.js') --}}"></script>
 <script src="{{ asset('js/summernote-bs5.js') }}"></script>
 <script src="{{ asset('js/summernote-config.js') }}"></script>
 
@@ -23,11 +22,6 @@
 <script src="{{ asset('js/tag-it.js') }}"></script>
 
 
-
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script> -->
-<script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js" type="text/javascript"></script>
-<script src="{{ asset('js/datatables-config.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('matdash/js/app.init.js') }}" type="text/javascript"></script>
 <script src="{{ asset('matdash/js/app.min.js') }}" type="text/javascript"></script>
@@ -44,7 +38,8 @@
 
 <script>
     window.routes = {
-        'filterDistrictsByRegionId': "{{ route('districts.filter-districts') }}"
+        'filterDistrictsByRegionId': "{{ route('districts.filter-districts') }}",
+        'filterServiceCentersByDistrictId': "{{ route('service-centers.filter-service-centers') }}",
     }
 </script>
 

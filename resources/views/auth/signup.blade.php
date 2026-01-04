@@ -12,9 +12,9 @@
 @include('partials.head')
 
 <body>
-    <div class="container-fluid login-container px-2">
-        <div class="row justify-content-center w-100">
-            <div class="login-card col-sm-12 col-lg-3">
+    <div class="container-fluid login-container px-2 m-0">
+        <div class="row justify-content-center w-100 m-0">
+            <div class="login-card col-sm-12 col-lg-3 py-5">
                 <div class="login-form-section">
 
 
@@ -30,7 +30,7 @@
                     @include('partials.errors')
 
                     <!-- Login Form -->
-                    <form class="" action="{{ route('signup.verifyId') }}" method="POST">
+                    <form class="mt-5" action="{{ route('signup.verifyId') }}" method="POST">
 
                         @csrf
 
@@ -48,7 +48,7 @@
                         </div>
 
 
-                        <button type="submit" class="btn btn-primary w-100 py-3">Verify ID</button>
+                        <button type="submit" class="btn btn-primary w-100">Verify ID</button>
                     </form>
 
 
