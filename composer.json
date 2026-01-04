@@ -10,9 +10,13 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "bpampuch/pdfmake": "^0.2.21",
+        "datatables.net/datatables.net-buttons-bs5": "^3.2",
+        "datatables.net/datatables.net-dt": "^2.3",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
-        "livewire/flux": "^2.2"
+        "livewire/flux": "^2.2",
+        "stuk/jszip": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.16",

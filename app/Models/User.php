@@ -33,6 +33,7 @@ class User extends Authenticatable
         'phone_number',
         'access_level',
         'password',
+        'weenorth_id',
     ];
 
     /**
@@ -78,6 +79,12 @@ class User extends Authenticatable
      */
 
 
+    public function member(): HasOne
+    {
+        return $this->hasOne(Member::class, 'weenorth_id', 'weenorth_id');
+    }
+
+
     /**
      * Resume Relationships
      */
@@ -110,5 +117,41 @@ class User extends Authenticatable
     {
         return $this->hasMany(ResumeBuilder\Skill::class)
             ->orderBy('skill_description', 'asc');
+    }
+
+
+
+    /**
+     * Methods --------------------------------------------------------------------------------
+     */
+
+
+    /**
+     * Determine if user is a member
+     *
+     * @return bool
+     */
+    public function isMember(): bool
+    {
+        if ($this->access_level === 'member') {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    /**
+     * Determine if user is an administrator
+     *
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        if ($this->access_level === 'administrator') {
+            return true;
+        }
+
+        return false;
     }
 }

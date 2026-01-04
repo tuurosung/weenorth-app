@@ -75,7 +75,7 @@
                     <img src="{{ asset('images/dummy_female.png') }}" alt="" class="ms-100 mh-100 rounded-circle">
                 </div>
                 <div class="menu-text">
-                    Zahra
+                    {{ Auth::user()->name }}
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-end me-lg-3">

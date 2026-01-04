@@ -55,7 +55,7 @@
         <link href="https://cdn.datatables.net/2.3.2/css/dataTables.bootstrap5.css" rel="stylesheet" />
 
     <link href="{{ asset('matdash/css/styles.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/stylesheet" href="{{ asset('css/datepicker.css') }}">
 
     <!-- WeeNorth CSS -->
     <link href="{{ asset('css/weenorth.css') }}" type="text/css" rel="stylesheet" />
@@ -104,7 +104,7 @@
 
     @font-face {
         font-family: 'BespokeSans-Medium';
-        src: url('{{ asset('font/BespokeSans/Fonts/WEB/fonts/BespokeSans-Medium.woff2') }}');
+        src: url("{{ asset('font/BespokeSans/Fonts/WEB/fonts/BespokeSans-Medium.woff2') }}");
         font-weight: 500;
         font-display: swap;
         font-style: normal;
@@ -112,7 +112,7 @@
 
     @font-face {
         font-family: 'BespokeSans-Bold';
-        src: url('{{ asset('font/BespokeSans/Fonts/WEB/fonts/BespokeSans-Bold.woff2') }}');
+        src: url("{{ asset('font/BespokeSans/Fonts/WEB/fonts/BespokeSans-Bold.woff2') }}");
         font-weight: 600;
         font-display: swap;
         font-style: normal;
@@ -120,7 +120,7 @@
 
     @font-face {
         font-family: 'Avante';
-        src: url({{ asset('font/Avante/ITCAvantGardePro-Md.otf') }});
+        src: url("{{ asset('font/Avante/ITCAvantGardePro-Md.otf') }}");
         font-weight: normal;
         font-style: normal;
     }
@@ -128,6 +128,19 @@
     .cal-sans {
         font-family: 'Cal Sans', sans-serif;
     }
+
+    .bespoke-sans-regular {
+        font-family: 'BespokeSans-Regular', sans-serif;
+    }
+
+    .marcellus {
+        font-family: 'Marcellus', serif;
+    }
+
+    .jost {
+        font-family: 'Jost', sans-serif;
+    }
+
 
     .bootbox .modal-header {
         display: none;

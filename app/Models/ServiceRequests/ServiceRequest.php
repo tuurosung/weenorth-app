@@ -3,6 +3,7 @@
 namespace App\Models\ServiceRequests;
 
 use App\Models\Trade;
+use App\Models\Member;
 use App\Models\Region;
 use App\Models\District;
 use App\Models\ServiceCenter;
@@ -106,6 +107,12 @@ class ServiceRequest extends Model
     public function trade()
     {
         return $this->belongsTo(Trade::class);
+    }
+
+
+    public function tradeswomen()
+    {
+        return $this->hasMany(Member::class, 'district_id', 'district_id');
     }
 
 
