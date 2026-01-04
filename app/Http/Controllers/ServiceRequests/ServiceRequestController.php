@@ -9,9 +9,9 @@ use App\Services\Regions\RegionService;
 use App\Services\Config\LocationService;
 use App\Services\Districts\DistrictService;
 use App\Models\ServiceRequests\ServiceRequest;
-use App\Http\Requests\StoreServiceRequestRequest;
-use App\Http\Requests\UpdateServiceRequestRequest;
 use App\Services\ServiceCenters\ServiceCenterService;
+use App\Http\Requests\ServiceRequests\StoreServiceRequestRequest;
+use App\Http\Requests\ServiceRequests\UpdateServiceRequestRequest;
 
 class ServiceRequestController extends Controller
 {
@@ -73,7 +73,9 @@ class ServiceRequestController extends Controller
      */
     public function show(ServiceRequest $serviceRequest)
     {
-        //
+        return view('app.service-requests.show', [
+            'serviceRequest' => $serviceRequest
+        ]);
     }
 
     /**
